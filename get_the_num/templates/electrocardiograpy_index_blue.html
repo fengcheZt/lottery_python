@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单号遗漏比心电图(篮球)</title>
+    <style>
+        .ecgClass{
+            width:730px;
+            height:500px;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>单号遗漏比心电图（近60期篮球）</h2>
+    <div id="chart" style="text-align: center">
+        <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:blue_ecg1' %}" />
+        <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:blue_ecg2' %}" />
+        <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:blue_ecg3' %}" />
+    </div>
+
+</body>
+</html>

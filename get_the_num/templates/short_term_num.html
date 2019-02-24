@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>短期数据</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>期号</th>
+            <th colspan="6">红球号码</th>
+            <th>篮球号码</th>
+        </tr>
+        {% for num in num_list %}
+            <tr>
+                <td>{{ num.termNum }}</td>
+                <td>{{ num.red01 }}</td>
+                <td>{{ num.red02 }}</td>
+                <td>{{ num.red03 }}</td>
+                <td>{{ num.red04 }}</td>
+                <td>{{ num.red05 }}</td>
+                <td>{{ num.red06 }}</td>
+                <td>{{ num.blue01 }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

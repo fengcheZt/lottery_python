@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单号遗漏比心电图</title>
+    <style>
+        .ecgClass{
+            width:730px;
+            height:500px;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>单号遗漏比心电图（近60期红球）</h2>
+    <div id="chart" style="text-align: center">
+        <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:ecg1' %}" />
+        <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:ecg2' %}" />
+        <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:ecg3' %}" />
+        <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:ecg4' %}" />
+        <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:ecg5' %}" />
+        <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:ecg6' %}" />
+    </div>
+
+</body>
+</html>

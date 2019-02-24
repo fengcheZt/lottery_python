@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>短期分析</title>
+    <link rel='stylesheet' href='/static/css/reset.css'>
+    <script src='/static/js/modernizr.js'></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/style02.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+	<script>window.jQuery || document.write('<script src="/static/js/jquery-1.11.0.min.js"><\/script>')</script>
+</head>
+<body>
+<ul class="wrapper">
+    <li>
+    <div class="info-box-green">
+      <h4 class="entypo-tools"> 奇偶比分析</h4>
+
+      <div class="info-content">
+        <div class="text">
+          <p>
+              {% if odd_event_flg %}
+                  奇偶比存在偏态
+              {% else %}
+                  奇偶比不存在偏态
+              {% endif %}
+          </p>
+        </div>
+        <span class="entypo-plus" id="expand-green"></span>
+      </div>
+    </div>
+  </li>
+
+  <li>
+    <div class="info-box-red">
+      <h4 class="entypo-lifebuoy"> 大小号比分析</h4>
+
+      <div class="info-content">
+        <div class="text">
+          <p>
+              {% if big_small_flg %}
+                     大小号比存在偏态
+                {% else %}
+                     大小号比不存在偏态
+                {% endif %}
+          </p>
+        </div>
+        <span class="entypo-plus" id="expand-red"></span>
+      </div>
+    </div>
+  </li>
+
+    <li>
+    <div class="info-box-sky">
+      <h4 class="entypo-lifebuoy"> 质数分析</h4>
+
+      <div class="info-content">
+        <div class="text">
+          <p>
+              {% if prime_flg %}
+                     质数存在偏态
+                {% else %}
+                     质数不存在偏态
+                {% endif %}
+          </p>
+
+        </div>
+        <span class="entypo-plus" id="expand-sky"></span>
+      </div>
+    </div>
+  </li>
+    <li>
+    <div class="info-box-sky">
+      <h4 class="entypo-lifebuoy"> 和值分析</h4>
+
+      <div class="info-content">
+        <div class="text">
+          <p>
+              {% if sum_flg %}
+                     和值存在偏态
+                {% else %}
+                     和值不存在偏态
+                {% endif %}
+          </p>
+
+        </div>
+        <span class="entypo-plus" id="expand-sky"></span>
+      </div>
+    </div>
+  </li>
+    <li>
+    <div class="info-box-sky">
+      <h4 class="entypo-lifebuoy"> AC值分析</h4>
+
+      <div class="info-content">
+        <div class="text">
+          <p>
+              {% if prime_flg %}
+                     质数存在偏态
+                {% else %}
+                     质数不存在偏态
+                {% endif %}
+          </p>
+
+        </div>
+        <span class="entypo-plus" id="expand-sky"></span>
+      </div>
+    </div>
+  </li>
+    <li>
+    <div class="info-box-sky">
+      <h4 class="entypo-lifebuoy"> 散度分析</h4>
+
+      <div class="info-content">
+        <div class="text">
+          <p>
+              {% if prime_flg %}
+                     质数存在偏态
+                {% else %}
+                     质数不存在偏态
+                {% endif %}
+          </p>
+
+        </div>
+        <span class="entypo-plus" id="expand-sky"></span>
+      </div>
+    </div>
+  </li>
+<li>
+    <div class="info-box-sky">
+      <h4 class="entypo-lifebuoy"> 区间分析</h4>
+
+      <div class="info-content">
+        <div class="text">
+          <p>
+              {% if prime_flg %}
+                     质数存在偏态
+                {% else %}
+                     质数不存在偏态
+                {% endif %}
+          </p>
+
+        </div>
+        <span class="entypo-plus" id="expand-sky"></span>
+      </div>
+    </div>
+  </li>
+<li>
+    <div class="info-box-sky">
+      <h4 class="entypo-lifebuoy"> 连号分析</h4>
+
+      <div class="info-content">
+        <div class="text">
+          <p>
+              {% if prime_flg %}
+                     质数存在偏态
+                {% else %}
+                     质数不存在偏态
+                {% endif %}
+          </p>
+
+        </div>
+        <span class="entypo-plus" id="expand-sky"></span>
+      </div>
+    </div>
+  </li>
+</ul>
+<script>
+
+	        $('#expand-green').on('click', function () {
+                  $(this).toggleClass('close-green');
+                  $('.text').toggleClass('open-green').end();
+              });
+              $('#expand-red').on('click', function () {
+                  $(this).toggleClass('close-red');
+                  $('.text').toggleClass('open-red');
+              });
+              $('#expand-sky').on('click', function () {
+                  $(this).toggleClass('close-sky');
+                  $('.text').toggleClass('open-sky');
+              });
+	</script>
+</body>
+</html>
