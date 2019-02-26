@@ -8,12 +8,19 @@
     <link rel="stylesheet" type="text/css" href="/static/css/style02.css">
     <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 	<script>window.jQuery || document.write('<script src="/static/js/jquery-1.11.0.min.js"><\/script>')</script>
+    <style type="text/css">
+
+</style>
 </head>
 <body>
-<ul class="wrapper">
+<ul id="menu" class="wrapper">
     <li>
     <div class="info-box-green">
-      <h4 class="entypo-tools"> 奇偶比分析</h4>
+    {% if odd_event_flg %}
+          <h4 style="background-color: #1b1e21" class="entypo-tools"> 奇偶比分析</h4>
+      {% else %}
+          <h4 style="background-color: red" class="entypo-tools"> 奇偶比分析</h4>
+      {% endif %}
 
       <div class="info-content">
         <div class="text">
@@ -38,6 +45,7 @@
 
       <div class="info-content">
         <div class="text">
+        <p>大小号相差8个位偏态<br>
           <p>
               {% if big_small_flg %}
                      大小号比存在偏态
@@ -57,6 +65,7 @@
 
       <div class="info-content">
         <div class="text">
+            <P>10期短期质数个数与理论值（20）相差8个时，属于偏态</P>
           <p>
               {% if prime_flg %}
                      质数存在偏态
@@ -76,6 +85,8 @@
 
       <div class="info-content">
         <div class="text">
+            <p>双色球短期分析中大于20的和值偏态是比较显著的，值得注意<br>
+             74到129的和值区间概率最大</p>
           <p>
               {% if sum_flg %}
                      和值存在偏态
@@ -95,14 +106,7 @@
 
       <div class="info-content">
         <div class="text">
-          <p>
-              {% if prime_flg %}
-                     质数存在偏态
-                {% else %}
-                     质数不存在偏态
-                {% endif %}
-          </p>
-
+          <p>AC值6,7,8,9最为常见</p>
         </div>
         <span class="entypo-plus" id="expand-sky"></span>
       </div>
@@ -115,13 +119,8 @@
       <div class="info-content">
         <div class="text">
           <p>
-              {% if prime_flg %}
-                     质数存在偏态
-                {% else %}
-                     质数不存在偏态
-                {% endif %}
+              散度值越大，说明号码越集中，散度值越小，说明号码越分散，散度值5,6,7,8,9最为常见
           </p>
-
         </div>
         <span class="entypo-plus" id="expand-sky"></span>
       </div>
@@ -134,11 +133,7 @@
       <div class="info-content">
         <div class="text">
           <p>
-              {% if prime_flg %}
-                     质数存在偏态
-                {% else %}
-                     质数不存在偏态
-                {% endif %}
+              最大间距分析 1到4算小 18到26算大
           </p>
 
         </div>
@@ -180,6 +175,12 @@
                   $(this).toggleClass('close-sky');
                   $('.text').toggleClass('open-sky');
               });
+
+              {% if odd_event_flg %}
+                  $("#oddEvenBC").css("backgroud-color","red")
+              {% else %}
+                    $("#oddEvenBC").css("backgroud-color","red")
+              {% endif %}
 	</script>
 </body>
 </html>

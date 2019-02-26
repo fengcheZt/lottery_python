@@ -10,6 +10,8 @@ import re,xlwt
 import pymysql
 import hashlib
 
+from bs4 import BeautifulSoup
+
 
 def get_ssq_html(get_page_num=0):
     url='http://kaijiang.zhcw.com/zhcw/html/ssq/list_1.html'
@@ -56,6 +58,7 @@ def get_ssq_html(get_page_num=0):
         html = html.decode('utf-8')
         b = b + html
     return b
+
 def get_ssq_num():
     html=get_ssq_html(1)
     reg=re.compile(r'<tr>.*?<td align="center">'
@@ -69,6 +72,22 @@ def get_ssq_num():
                   ,re.S)
     it = re.findall(reg,html)
     return it
+def parse_one_page():
+    html = get_ssq_html(1)
+    soup = BeautifulSoup(html, "lxml")
+    i=0
+    for item in soup.select('tr')[2:-1]:
+        yield {
+            'openDate':item.select('td')[i].text,
+            'termNum':item.select('td')[i+1].text,
+            'red01':item.select('td em')[0].text,
+            'red02': item.select('td em')[1].text,
+            'red03': item.select('td em')[2].text,
+            'red04': item.select('td em')[3].text,
+            'red05': item.select('td em')[4].text,
+            'red06': item.select('td em')[5].text,
+            'blue01': item.select('td em')[6].text
+        }
 def excel_create(ceshi):
     newTable='ssq.xls'
     wb=xlwt.Workbook(encoding = 'utf-8')
@@ -83,21 +102,21 @@ def excel_create(ceshi):
             ws.write(index,i,j[i])
         index +=1
         wb.save(newTable)
-def insertData(data):
+def insertData():
     conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python")
     cur = conn.cursor()
     sql = 'INSERT INTO SSQDATA(OPENDATE,TERMNUM,RED01, RED02, RED03, RED04,RED05,RED06,BLUE01,HASHCODE) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) '
     values=[]
-    for j in data:
-        opendate=j[0]
-        termnum=j[1]
-        red01=j[2]
-        red02=j[3]
-        red03=j[4]
-        red04=j[5]
-        red05=j[6]
-        red06=j[7]
-        blue01=j[8]
+    for j in parse_one_page():
+        opendate=j['openDate']
+        termnum=j['termNum']
+        red01=j['red01']
+        red02=j['red02']
+        red03=j['red03']
+        red04=j['red04']
+        red05=j['red05']
+        red06=j['red06']
+        blue01=j['blue01']
         hashStr=opendate+red01+red02+red03+red04+red05+red06+blue01
         # hashcode=hash(str(hashStr))
         # bytes(hashStr, encoding="utf8")
@@ -125,8 +144,11 @@ def insertData(data):
        conn.rollback()
     cur.close()
     conn.close()
+
+
 def updateSSQData():
-    ceshi = get_ssq_num()
-    insertData(ceshi)
+    # ceshi = get_ssq_num()
+    insertData()
 if __name__ =='__main__':
     updateSSQData()
+    # parse_one_page()
