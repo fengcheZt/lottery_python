@@ -3,184 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <title>短期分析</title>
-    <link rel='stylesheet' href='/static/css/reset.css'>
-    <script src='/static/js/modernizr.js'></script>
-    <link rel="stylesheet" type="text/css" href="/static/css/style02.css">
+{#    <link rel='stylesheet' href='/static/css/reset.css'>#}
+{#    <script src='/static/js/modernizr.js'></script>#}
+{#    <link rel="stylesheet" type="text/css" href="/static/css/style02.css">#}
     <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 	<script>window.jQuery || document.write('<script src="/static/js/jquery-1.11.0.min.js"><\/script>')</script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/layoutit.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap-combined.min.css" />
     <style type="text/css">
 
-</style>
+    .shadow {
+        -webkit-box-shadow: #666 0px 0px 10px;
+        -moz-box-shadow: #666 0px 0px 10px;
+        box-shadow: #666 0px 0px 10px;
+        background: #EEFF99;
+        padding: initial;
+    }
+    </style>
 </head>
 <body>
-<ul id="menu" class="wrapper">
-    <li>
-    <div class="info-box-green">
-    {% if odd_event_flg %}
-          <h4 style="background-color: #1b1e21" class="entypo-tools"> 奇偶比分析</h4>
-      {% else %}
-          <h4 style="background-color: red" class="entypo-tools"> 奇偶比分析</h4>
-      {% endif %}
-
-      <div class="info-content">
-        <div class="text">
-            <p>5期分析，奇偶数差8个属于明显偏态<br>
-            10期分析，奇偶数差12个属于明显偏态</p>
-          <p>
-              {% if odd_event_flg %}
-                  奇偶比存在偏态
-              {% else %}
-                  奇偶比不存在偏态
-              {% endif %}
-          </p>
-        </div>
-        <span class="entypo-plus" id="expand-green"></span>
-      </div>
-    </div>
-  </li>
-
-  <li>
-    <div class="info-box-red">
-      <h4 class="entypo-lifebuoy"> 大小号比分析</h4>
-
-      <div class="info-content">
-        <div class="text">
-        <p>大小号相差8个位偏态<br>
-          <p>
-              {% if big_small_flg %}
-                     大小号比存在偏态
-                {% else %}
-                     大小号比不存在偏态
-                {% endif %}
-          </p>
-        </div>
-        <span class="entypo-plus" id="expand-red"></span>
-      </div>
-    </div>
-  </li>
-
-    <li>
-    <div class="info-box-sky">
-      <h4 class="entypo-lifebuoy"> 质数分析</h4>
-
-      <div class="info-content">
-        <div class="text">
-            <P>10期短期质数个数与理论值（20）相差8个时，属于偏态</P>
-          <p>
-              {% if prime_flg %}
-                     质数存在偏态
-                {% else %}
-                     质数不存在偏态
-                {% endif %}
-          </p>
-
-        </div>
-        <span class="entypo-plus" id="expand-sky"></span>
-      </div>
-    </div>
-  </li>
-    <li>
-    <div class="info-box-sky">
-      <h4 class="entypo-lifebuoy"> 和值分析</h4>
-
-      <div class="info-content">
-        <div class="text">
-            <p>双色球短期分析中大于20的和值偏态是比较显著的，值得注意<br>
-             74到129的和值区间概率最大</p>
-          <p>
-              {% if sum_flg %}
-                     和值存在偏态
-                {% else %}
-                     和值不存在偏态
-                {% endif %}
-          </p>
-
-        </div>
-        <span class="entypo-plus" id="expand-sky"></span>
-      </div>
-    </div>
-  </li>
-    <li>
-    <div class="info-box-sky">
-      <h4 class="entypo-lifebuoy"> AC值分析</h4>
-
-      <div class="info-content">
-        <div class="text">
-          <p>AC值6,7,8,9最为常见</p>
-        </div>
-        <span class="entypo-plus" id="expand-sky"></span>
-      </div>
-    </div>
-  </li>
-    <li>
-    <div class="info-box-sky">
-      <h4 class="entypo-lifebuoy"> 散度分析</h4>
-
-      <div class="info-content">
-        <div class="text">
-          <p>
-              散度值越大，说明号码越集中，散度值越小，说明号码越分散，散度值5,6,7,8,9最为常见
-          </p>
-        </div>
-        <span class="entypo-plus" id="expand-sky"></span>
-      </div>
-    </div>
-  </li>
-<li>
-    <div class="info-box-sky">
-      <h4 class="entypo-lifebuoy"> 区间分析</h4>
-
-      <div class="info-content">
-        <div class="text">
-          <p>
-              最大间距分析 1到4算小 18到26算大
-          </p>
-
-        </div>
-        <span class="entypo-plus" id="expand-sky"></span>
-      </div>
-    </div>
-  </li>
-<li>
-    <div class="info-box-sky">
-      <h4 class="entypo-lifebuoy"> 连号分析</h4>
-
-      <div class="info-content">
-        <div class="text">
-          <p>
-              {% if prime_flg %}
-                     质数存在偏态
-                {% else %}
-                     质数不存在偏态
-                {% endif %}
-          </p>
-
-        </div>
-        <span class="entypo-plus" id="expand-sky"></span>
-      </div>
-    </div>
-  </li>
-</ul>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">
+			<h3 class="text-info">
+				奇偶比分析
+			</h3>
+			<p>
+				5期分析，奇偶数差8个属于明显偏态<br /> 10期分析，奇偶数差12个属于明显偏态
+			</p>
+			<p class="lead">
+				奇偶比存在偏态
+			</p>
+		</div>
+		<div class="span4">
+			<h3 class="text-info">
+				大小号比分析
+			</h3>
+			<p>
+				大小号相差8个位偏态
+			</p>
+			<p>
+				大小号比存在偏态
+			</p>
+		</div>
+		<div class="span4">
+			<h3 class="text-info">
+				质数分析
+			</h3>
+			<p>
+				10期短期质数个数与理论值（20）相差8个时，属于偏态
+			</p>
+			<p>
+				质数存在偏态
+			</p>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+			<h3 class="text-info">
+				和值分析
+			</h3>
+			<p>
+				<br /> 双色球短期分析中大于20的和值偏态是比较显著的，值得注意<br /> 74到129的和值区间概率最大
+			</p>
+			<p class="lead">
+				<br /> 和值存在偏态
+			</p>
+		</div>
+		<div class="span4">
+			<h3 class="text-info">
+				AC 值分析
+			</h3>
+			<p>
+				<br /> AC值6,7,8,9最为常见
+			</p>
+		</div>
+		<div class="span4">
+			<h3 class="text-info">
+				散度值分析
+			</h3>
+			<p>
+				<br /> 散度值越大，说明号码越集中，散度值越小，说明号码越分散，散度值5,6,7,8,9最为常见<br />
+			</p>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+			<h3 class="text-info">
+				区间分析
+			</h3>
+			<p>
+				<br /> 最大间距分析 1到4算小 18到26算大<br />
+			</p>
+		</div>
+		<div class="span4">
+			<h3 class="text-info">
+				连号分析
+			</h3>
+			<p>
+				<em>Git</em>是一个分布式的版本控制系统，最初由<strong>Linus Torvalds</strong>编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在Ruby社区中。
+			</p>
+			<p>
+				<em>Git</em>是一个分布式的版本控制系统，最初由<strong>Linus Torvalds</strong>编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在Ruby社区中。
+			</p>
+		</div>
+		<div class="span4">
+			<h3 class="text-info">
+				偏度分析
+			</h3>
+			<p>
+				<br /> 偏度值在2,3,4,5,6,7最为常见，占比81%
+			</p>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+			<h3 class="text-info">
+				尾号分析
+			</h3>
+			<p>
+				<br /> 寻找尾号近期出现最少的那个，最为下期号码的预判标准<br />
+			</p>
+		</div>
+		<div class="span4">
+			<h3 class="text-info">
+				重号分析
+			</h3>
+			<p>
+				<br /> 重号为1个或2个的比率最高
+			</p>
+		</div>
+		<div class="span4">
+			<h3 class="text-info">
+				余数分析
+			</h3>
+			<p>
+				模6 取余<br /> 余0 概率15.15%<br /> 余1 概率18.18%<br /> 余2 概率18.18%<br /> 余3 概率18.18%<br /> 余4 概率15.15%<br /> 余5 概率15.15%<br /> 在此定义，当近期中奖号码余数的出现情况与标准相差5%时，可以猜测下期中奖号码可能会有近期出现概率低号码<br /> 也可能不会出现出现概率高的号码<br /> 当有5%的差距时，认为出现了余数的偏态
+			</p>
+		</div>
+	</div>
+</div>
 <script>
-
-	        $('#expand-green').on('click', function () {
-                  $(this).toggleClass('close-green');
-                  $('.text').toggleClass('open-green').end();
-              });
-              $('#expand-red').on('click', function () {
-                  $(this).toggleClass('close-red');
-                  $('.text').toggleClass('open-red');
-              });
-              $('#expand-sky').on('click', function () {
-                  $(this).toggleClass('close-sky');
-                  $('.text').toggleClass('open-sky');
-              });
-
-              {% if odd_event_flg %}
-                  $("#oddEvenBC").css("backgroud-color","red")
-              {% else %}
-                    $("#oddEvenBC").css("backgroud-color","red")
-              {% endif %}
+    $(".span4").addClass("shadow");
+    $(".row-fluid").css("margin-top","20px");
 	</script>
 </body>
 </html>
