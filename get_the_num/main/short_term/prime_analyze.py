@@ -38,6 +38,39 @@ def analyzeByPrimeCount(results):
     else:
         print("质数分析，没有出现质数的明显偏态，当质数出现的次数与20相差8时为偏态，真正差值为" + str(count-20))
     return sql
+def getConditionsAfterAnalyzeByPrimeCount(args={},results=(),analysisInfo={}):
+    merge_results = ()
+    for i in results:
+        merge_results = merge_results + i
+    count = 0
+    for num in merge_results:
+        if num > 1:
+            # 查看因子
+            for i in range(2, num):
+                if (num % i) == 0:
+                    # 不是质数
+                    break
+            else:
+                # 是质数
+                count += 1
+    # 双色球短期分析中大于8的质数偏态是比较显著的，值得注意
+    if abs(count-20) >= 8:
+        msg='质数分析，明显的质数偏态'
+        print(msg)
+        analysisInfo['zhishuInfo']=msg
+        if count > 20:
+            # 寻找质数个数小于2
+            # 质数个数大于2
+            args['analyzeindex__prime_number_count__lt']=2
+        else:
+            # 寻找质数个数大于2
+            # 质数个数小于2
+            args['analyzeindex__prime_number_count__gt'] = 2
+    else:
+        msg="质数分析，没有出现质数的明显偏态，当质数出现的次数与20相差8时为偏态，真正差值为" + str(count-20)
+        print(msg)
+        analysisInfo['zhishuInfo'] = msg
+    return args
 def get_is_skewness_prime(results):
     merge_results = ()
     for i in results:

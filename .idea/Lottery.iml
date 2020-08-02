@@ -20,9 +20,10 @@
       <sourceFolder url="file://$MODULE_DIR$/get_the_num/main/long_term" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/get_the_num/main/paintChart" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/get_the_num/main/common_util" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/get_the_num" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (lottery_python)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

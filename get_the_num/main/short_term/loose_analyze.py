@@ -11,6 +11,13 @@ def analyzeByLooseValue():
     # 散度值越大，说明号码越集中，散度值越小，说明号码越分散，散度值5,6,7,8,9最为常见
     print("散度分析，取散度为5,6,7,8,9的数据")
     return " AND t.loose_value in (5,6,7,8,9)"
+def getConditionsAfterAnalyzeByLooseValue(args={},analysisInfo={}):
+    # 散度值越大，说明号码越集中，散度值越小，说明号码越分散，散度值5,6,7,8,9最为常见
+    args['analyzeindex__loose_value__in']=[5,6,7,8,9]
+    msg="散度分析，取散度为5,6,7,8,9的数据"
+    print(msg)
+    analysisInfo['sanduInfo']=msg
+    return args
 def select_loose_index_data(alternative_results):
     conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python")
     cur = conn.cursor()

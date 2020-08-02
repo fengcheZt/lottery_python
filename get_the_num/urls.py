@@ -4,6 +4,7 @@ from . import views
 app_name='get_the_num'
 urlpatterns = [
     path('index/',views.index),
+    path('index02/',views.index02),
     path('red_ecg1/',views.electrocardiograpy1_red,name='ecg1'),
     path('red_ecg2/',views.electrocardiograpy2_red,name='ecg2'),
     path('red_ecg3/',views.electrocardiograpy3_red,name='ecg3'),
@@ -20,5 +21,7 @@ urlpatterns = [
     path('short_term_num/',views.short_term_num,name='short_term'),
     path('mid/',views.mid,name='mid'),
     path('long/',views.long,name='long'),
-
+    path('selectNo/',views.selectNo,name='selectNo'),
+    path('showNo/',views.showNo,name='showNo'),
+    path('testData/',views.testData,name='testData'),
 ]

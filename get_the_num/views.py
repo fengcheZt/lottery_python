@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .main.paintChart.loosing_ratio_chart_red import RedChart
 from .main.identifyLottery import winLottery,select_selected_ssqdata
@@ -8,9 +9,12 @@ from .main.short_term.big_small_analyze import get_is_skewness_bigsmall
 from .main.short_term.prime_analyze import get_is_skewness_prime
 from .main.short_term.sum_analyze import get_is_shewness_sum
 from .main.paintChart.loosing_ratio_chart_blue import BlueChart
+from .main.getHitTheJackpotNo import getHitTheJackpotNo
 # Create your views here.
 def index(request):
     return render(request,'index.html')
+def index02(request):
+    return render(request,'index02.html')
 def short(request):
     results = get_short_data()
     odd_event_flg=get_is_skewness(results)
@@ -75,3 +79,37 @@ def short_term_num(request):
     results=get_short_data_all()
     context = {'num_list': results}
     return render(request, 'short_term_num.html', context)
+
+def selectNo(request):
+    return render(request,'selectNo.html')
+
+def showNo(request):
+    results=getHitTheJackpotNo()
+    # results = get_short_data_all()
+    context = {'num_list': results}
+    return render(request,'selectNo.html',context)
+from django.core import serializers
+import json
+from .models import Ssqdata
+def testData(request):
+    results=getHitTheJackpotNo(request)
+    # ret = {'status': True, 'data': None}
+    # ret['data']=results
+    # result =json.dumps(ret);
+    ret = {'status': True, 'data': json.loads(serializers.serialize("json", results['hitNoList'])),'analysisInfo':results['analysisInfo']}
+
+    return HttpResponse(json.dumps(ret),content_type='application/json')
+    # return HttpResponse(serializers.serialize("json", results['hitNoList']))
+    # return JsonResponse(ret)
+def testData1(request):
+    a=request.GET['a']
+    b=request.GET['b']
+
+    if request.is_ajax():
+        ajax_string = 'ajax request: '
+    else:
+        ajax_string = 'not ajax request: '
+
+    c = int(a) + int(b)
+    r = HttpResponse(ajax_string + str(c))
+    return r

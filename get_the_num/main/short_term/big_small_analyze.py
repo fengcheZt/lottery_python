@@ -41,6 +41,42 @@ def analyzeByBidSmallRatio(results,alternative_results=()):
     else:
         print("大小分析，没有出现大小号的明显偏态，差值为8为偏态，真正差值为" + str(difference))
     return sql
+def getConditionsAfterAnalyzeByBidSmallRatio(args={},results=(),analysisInfo={}):
+    merge_results = ()
+    for i in results:
+        merge_results = merge_results + i
+    small_count = 0
+    big_count = 0
+    for a1 in merge_results:
+        if a1 <= 16:
+            # 小号
+            small_count += 1
+        else:
+            # 大号
+            big_count += 1
+    if small_count == 0:
+        # 全为大号
+        ratio = 100
+    else:
+        ratio = big_count / small_count
+    difference = big_count - small_count
+    # 双色球短期分析中大于8的大小号偏态是比较显著的，值得注意
+    if abs(difference) >= 8:
+        msg='大小分析，明显的大小号偏态'
+        print(msg)
+        analysisInfo['daxiaoInfo'] = msg
+        if big_count > small_count:
+            # 寻找大小比小于1的
+            # 大号少，小号多
+            args['analyzeindex__big_small_ratio__lt']=1
+        else:
+            # 大号多，小号少
+            args['analyzeindex__big_small_ratio__gt'] = 1
+    else:
+        msg="大小分析，没有出现大小号的明显偏态，差值为8为偏态，真正差值为" + str(difference)
+        print(msg)
+        analysisInfo['daxiaoInfo'] = msg
+    return args
 def get_is_skewness_bigsmall(results):
     merge_results = ()
     for i in results:

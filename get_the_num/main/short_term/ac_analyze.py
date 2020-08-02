@@ -12,6 +12,13 @@ def analyzeByAcValue():
     sql=" AND t.ac_value in (6,7,8,9)"
     print("ac值分析，取ac值为6,7,8,9的数据")
     return sql
+def getConditionsAfterAnalyzeByAcValue(args={},analysisInfo={}):
+    # AC值6,7,8,9最为常见
+    args['analyzeindex__ac_value__in']=[6,7,8,9]
+    msg="ac值分析，取ac值为6,7,8,9的数据"
+    print(msg)
+    analysisInfo['acInfo']=msg
+    return args
 def select_ac_index_data(alternative_results):
     conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python")
     cur = conn.cursor()

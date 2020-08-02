@@ -28,6 +28,30 @@ def analyzeBySumValue(results):
     else:
         print("和值分析，没有出现和值的明显偏态，当和值与102相差20时为偏态，差值为" + str(sum_value-102))
     return sql
+def getConditionsAfterAnalyzeBySumValue(args={},results=(),analysisInfo={}):
+    sum_value = 0
+    for num in results[0]:
+        sum_value = sum_value + num
+    # 双色球短期分析中大于20的和值偏态是比较显著的，值得注意
+    if abs(sum_value-102) >= 20:
+        msg="和值分析，明显的和数偏态"
+        print(msg)
+        analysisInfo['hezhiInfo']=msg
+        if sum_value > 102:
+            # 寻找和值小于102
+            # 和值小于102
+            args['analyzeindex__sum_value__lt']=102
+            args['analyzeindex__sum_value__gt'] = 74
+        else:
+            # 寻找和值大于102
+            # 和值大于102
+            args['analyzeindex__sum_value__lt'] = 129
+            args['analyzeindex__sum_value__gt'] = 102
+    else:
+        msg="和值分析，没有出现和值的明显偏态，当和值与102相差20时为偏态，差值为" + str(sum_value-102)
+        print(msg)
+        analysisInfo['hezhiInfo'] = msg
+    return args
 def get_is_shewness_sum(results):
     sum_value = 0
     for num in results[0]:

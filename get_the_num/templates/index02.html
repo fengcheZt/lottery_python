@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+    <title>双色球分析首页</title>
+
+
+    <link rel="stylesheet" type="text/css" href="/static/css/index02/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/index02/htmleaf-demo.css">
+	<style class="cp-pen-styles">
+        *,
+    *:before,
+    *:after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      font-size: 62.5%;
+    }
+
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+
+    header {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #c6d9d3;
+    }
+    header .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    header .overlay h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      margin: 0;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 9rem;
+      text-shadow: 25px -15px rgba(25, 42, 46, 0.04);
+      color: #142124;
+      mix-blend-mode: overlay;
+    }
+    header .overlay h1 span {
+      margin-top: -2em;
+      padding-top: 0.5em;
+      display: block;
+      letter-spacing: 5px;
+      font-size: 1.25rem;
+    }
+    header .parallax {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    header .parallax div {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: 0 50%;
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    header .parallax .one {
+      background-image: url("/static/svg/mountains-1.svg");
+      z-index: 4;
+    }
+    header .parallax .two {
+      background-image: url("/static/svg/mountains-2.svg");
+      z-index: 3;
+    }
+    header .parallax .three {
+      background-image: url("/static/svg/mountains-3.svg");
+      z-index: 2;
+    }
+    header .parallax .four {
+      background-image: url("/static/svg/mountains-4.svg");
+      z-index: 1;
+    }
+    header .parallax .five {
+      background-image: url("/static/svg/mountains-5.svg");
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      margin-bottom: 15vh;
+      padding: 2em 4em;
+      min-height: 85vh;
+      background-color: #e8f4f8;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.08);
+    }
+    main .container {
+      font-size: 1rem;
+      color: #192a2e;
+    }
+    main .container pre {
+      padding: 1em;
+      border-radius: 0.25em;
+      background-color: rgba(25, 42, 46, 0.05);
+    }
+    main .container a {
+      text-decoration: none;
+      font-size: 2rem;
+      font-weight: 500;
+      border-bottom: 2px dashed;
+      color: #192a2e;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      display: flex;
+      min-height: 15vh;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+      background-color: #192a2e;
+      color: #c6d9d3;
+    }
+    footer a {
+      padding-bottom: .25em;
+      text-decoration: none;
+      border-bottom: 1px dashed #c6d9d3;
+      color: #c6d9d3;
+    }
+</style>
+</head>
+<body>
+	<header>
+  <div class="overlay">
+    <div class="parallax">
+      <h1>Awesome<span>Parallax Scrolling</span></h1>
+      <div class="one"></div>
+      <div class="two"></div>
+      <div class="three"></div>
+      <div class="four"></div>
+      <div class="five"></div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="container">
+  	<div class="htmleaf-header">
+		<h1>带混合模式的jquery滚动背景视觉差特效 <span>CSS mix-blend-mode & Awesome Parallax Scrolling</span></h1>
+		<div class="htmleaf-links">
+			<a class="htmleaf-icon icon-htmleaf-home-outline" href="http://www.htmleaf.com/" title="jQuery之家" target="_blank"><span> jQuery之家</span></a>
+			<a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="http://www.htmleaf.com/jQuery/shijuecha/201901245508.html" title="返回下载页" target="_blank"><span> 返回下载页</span></a>
+		</div>
+	</div>
+    <p>Sapiente nihil quidem tempora unde nobis eum corrupti veniam perferendis numquam, minima officia beatae quisquam quas cumque voluptatem facilis! Tenetur, praesentium corporis rerum repellendus vero temporibus quia voluptates corrupti, aliquam.</p><a href="https://www.w3schools.com/cssref/pr_mix-blend-mode.asp" target="blank">CSS mix-blend-mode</a>
+    <pre>wrapper {
+  background-color: ... ;
+}
+
+text {
+  color: ... ;
+  mix-blend-mode: ... ;
+}</pre>
+    <p>Sint sequi consequuntur eaque, harum, est tempora dolorem ullam perferendis quia laudantium porro magni necessitatibus sit dicta quidem. Sint autem quidem recusandae, ipsam, dolorem saepe blanditiis dolor. Aliquid, voluptate, at.</p>
+    <p>Tempore placeat veritatis ad excepturi, quasi, consequatur fuga. Corporis suscipit at aut quaerat nostrum maxime amet ipsum illo qui. Voluptate aperiam nostrum natus voluptatem modi, hic aliquid tempora quisquam, itaque.</p>
+  </div>
+  <div class="related">
+		    <h3>如果你喜欢这个插件，那么你可能也喜欢:</h3>
+
+		</div>
+</main>
+	<script src="/static/js/jquery-2.1.1.min.js"></script>
+
+	<script>
+		$(window).scroll(function () {
+		  const
+		  a = $(this).scrollTop(),
+		  b = 800;
+		  $("h1").css({
+		    backgroundPosition: "center " + a / 2 + "px" });
+
+		  $(".parallax").css({
+		    top: a / 1.6 + "px",
+		    opacity: 1 - a / b });
+
+		});
+
+		// parallax scrolling
+
+		document.addEventListener("scroll", () => {
+		  const
+		  top = window.pageYOffset,
+		  one = document.querySelector(".one"),
+		  two = document.querySelector(".two"),
+		  three = document.querySelector(".three"),
+		  four = document.querySelector(".four"),
+		  five = document.querySelector(".five");
+
+		  one.style.bottom = -(top * 0.1) + "px";
+		  two.style.bottom = -(top * 0.2) + "px";
+		  three.style.bottom = -(top * 0.3) + "px";
+		  four.style.bottom = -(top * 0.4) + "px";
+		  five.style.bottom = -(top * 0.5) + "px";
+		});
+
+	</script>
+</body>
+</html>

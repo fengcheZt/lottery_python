@@ -7,6 +7,7 @@ Created on Tue Oct  9 21:34:44 2018
 @author: Administrator
 """
 import pymysql
+from django.db.models import QuerySet
 
 from get_the_num.main.common_util.common_business_util import get_sql_id_list_str
 from get_the_num.main.getData import get_short_data
@@ -43,6 +44,42 @@ def analyzeByRatio(results):
     else:
         print("奇偶分析，没有出现奇偶的明显偏态，10期分析，差值为12为偏态，5期分析，差值为8为偏态，真正差值为" + str(difference)+"")
     return sql
+def getConditionsAferAnalyzeByRatio(args={},results=(),analysisInfo={}):
+    merge_results = ()
+    for i in results:
+        merge_results = merge_results + i
+    even_count = 0
+    odd_count = 0
+    for j in merge_results:
+        if (j % 2) == 0:
+            # 偶数
+            even_count += 1
+        else:
+            # 奇数
+            odd_count += 1
+    difference = odd_count - even_count
+    # 双色球短期分析中大于8的奇偶号偏态是比较显著的，值得注意
+    odd_event_index=0
+    if len(results)==5:
+        odd_event_index=8
+    if len(results)==10:
+        odd_event_index = 12
+    if abs(difference) >= odd_event_index:
+        msg='奇偶分析，明显的奇偶偏态'
+        print(msg)
+        analysisInfo['jiouInfo']=msg
+        if odd_count > even_count:
+            # 寻找奇偶比小于1的
+            # 奇数少，偶数多
+            args['analyzeindex__odd_even_ratio__lt']=1
+        else:
+            # 奇数多，偶数少
+            args['analyzeindex__odd_even_ratio__gt'] = 1
+    else:
+        msg="奇偶分析，没有出现奇偶的明显偏态，10期分析，差值为12为偏态，5期分析，差值为8为偏态，真正差值为" + str(difference)+""
+        print(msg)
+        analysisInfo['jiouInfo'] = msg
+    return args
 def get_is_skewness(results):
     merge_results = ()
     for i in results:

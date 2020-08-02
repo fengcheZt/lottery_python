@@ -61,6 +61,7 @@ def analyzeShort():
     # 重号分析
     alternative_results = analyzeDoubleSign(result, alternative_results)
     return alternative_results
+
 def analyzeMid(alternative_results=()):
     results = get_losing_data()
     # 趋势反转分析
