@@ -5,7 +5,7 @@ Created on Tue Oct  9 21:34:44 2018
 
 @author: Administrator
 """
-from getData import get_short_data
+from get_the_num.main.getData import get_short_data
 
 def analyzeConsectiveNum(results):
     no_consective_num_count = 0
@@ -38,7 +38,7 @@ def analyzeConsectiveNum(results):
         sql = sql + " AND  t.consective_num_index=0"
     return sql
 
-def getConditionAfterAnalyzeConsectiveNum(args={},results=()):
+def getConditionAfterAnalyzeConsectiveNum(args={},results=(),analysisInfo={}):
     no_consective_num_count = 0
     one_two_consective_num_count=0
     other_consective_num_count=0
@@ -61,11 +61,15 @@ def getConditionAfterAnalyzeConsectiveNum(args={},results=()):
             other_consective_num_count+=1
     if no_consective_num_count/10 - 0.3612 >0.2:
         # 如果无连号占比概率大于理论概率的百分之二十，说明偏态
-        print("连号分析，出现了无连号的明显偏态")
-        args['AnalyzeIndex__consective_num_index']=12
+        msg="连号分析，出现了无连号的明显偏态"
+        print(msg)
+        analysisInfo["lianhao"]=msg
+        args['analyzeindex__consective_num_index']=12
     elif one_two_consective_num_count/10 - 0.4312 >0.2:
-        print("连号分析，出现了一组两连号的明显偏态")
-        args['AnalyzeIndex__consective_num_index'] = 0
+        msg = "连号分析，出现了一组两连号的明显偏态"
+        print(msg)
+        analysisInfo["lianhao"] = msg
+        args['analyzeindex__consective_num_index'] = 0
     return args
 if __name__ =='__main__':
     # insertAllData()

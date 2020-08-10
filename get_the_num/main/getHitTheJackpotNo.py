@@ -33,7 +33,8 @@ def getHitTheJackpotNo(request):
         kwargs = getConditionsAfterAnalyzeByLooseValue(kwargs,analysisInfo)
     if request.GET['qujian3Flg']=='true':
         kwargs = getConditionsAfterAnalyzeBySection(kwargs,analysisInfo)
-
+    if request.GET['lianhaoFlg']=='true':
+        kwargs = getConditionAfterAnalyzeConsectiveNum(kwargs,results,analysisInfo)
 
 
     # kwargs=getConditionAfterAnalyzeConsectiveNum(kwargs,results)

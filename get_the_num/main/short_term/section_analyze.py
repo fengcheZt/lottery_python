@@ -5,7 +5,7 @@ Created on Tue Oct  9 21:34:44 2018
 
 @author: Administrator
 """
-from getData import get_last_one_data
+from get_the_num.main.getData import get_last_one_data
 
 
 def analyzeBySection():

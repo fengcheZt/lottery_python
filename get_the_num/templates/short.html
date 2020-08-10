@@ -25,51 +25,74 @@
 <body>
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="span4">
+		<div class="span4" id="jiouDiv">
 			<h3 class="text-info">
 				奇偶比分析
 			</h3>
 			<p>
 				5期分析，奇偶数差8个属于明显偏态<br /> 10期分析，奇偶数差12个属于明显偏态
 			</p>
-			<p class="lead">
-				奇偶比存在偏态
-			</p>
+            {% if  odd_event_flg == True %}
+                <script>
+                    $("#jiouDiv").css("background","#ffc107")
+                </script>
+                <p class="lead">
+                    奇偶比存在偏态
+                </p>
+            {% endif %}
 		</div>
-		<div class="span4">
+		<div class="span4" id="daxiaoDiv">
 			<h3 class="text-info">
 				大小号比分析
 			</h3>
 			<p>
 				大小号相差8个位偏态
 			</p>
-			<p>
-				大小号比存在偏态
-			</p>
+            {% if  big_small_flg == True %}
+                <script>
+                    $("#daxiaoDiv").css("background","#ffc107")
+                </script>
+                <p class="lead">
+                    大小号比存在偏态
+                </p>
+            {% endif %}
+
 		</div>
-		<div class="span4">
+		<div class="span4" id="zhishuDiv">
 			<h3 class="text-info">
 				质数分析
 			</h3>
 			<p>
 				10期短期质数个数与理论值（20）相差8个时，属于偏态
 			</p>
-			<p>
-				质数存在偏态
-			</p>
+            {% if  prime_flg == True %}
+                <script>
+                    $("#zhishuDiv").css("background","#ffc107")
+                </script>
+                <p class="lead">
+                    质数存在偏态
+                </p>
+            {% endif %}
+
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span4">
+		<div class="span4" id="hezhiDiv">
 			<h3 class="text-info">
 				和值分析
 			</h3>
 			<p>
 				<br /> 双色球短期分析中大于20的和值偏态是比较显著的，值得注意<br /> 74到129的和值区间概率最大
 			</p>
-			<p class="lead">
-				<br /> 和值存在偏态
-			</p>
+            {% if  sum_flg == True %}
+                <script>
+                    $("#hezhiDiv").css("background","#ffc107")
+                </script>
+                <p class="lead">
+                    <br /> 和值存在偏态
+                </p>
+            {% endif %}
+
 		</div>
 		<div class="span4">
 			<h3 class="text-info">

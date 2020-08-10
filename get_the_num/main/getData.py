@@ -22,7 +22,7 @@ def get_short_data():
 def get_short_data_all():
     conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python",cursorclass=pymysql.cursors.DictCursor)
     cur = conn.cursor()
-    sql = "SELECT t.`termNum`, t.`red01`,t.`red02`,t.`red03`,t.`red04`,t.`red05`,t.`red06`,t.`blue01` FROM SSQDATA t ORDER BY ID DESC LIMIT 10"
+    sql = "SELECT t.`termNum`, t.`red01`,t.`red02`,t.`red03`,t.`red04`,t.`red05`,t.`red06`,t.`blue01` FROM SSQDATA t ORDER BY TERMNUM DESC LIMIT 10"
     try:
        # 执行sql语句
        cur.execute(sql)

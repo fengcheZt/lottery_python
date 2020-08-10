@@ -6,7 +6,7 @@ Created on Tue Oct  9 21:34:44 2018
 @author: Administrator
 """
 import pymysql
-from common_business_util import get_sql_id_list_str
+from get_the_num.main.common_util.common_business_util import get_sql_id_list_str
 def analyzeByLooseValue():
     # 散度值越大，说明号码越集中，散度值越小，说明号码越分散，散度值5,6,7,8,9最为常见
     print("散度分析，取散度为5,6,7,8,9的数据")

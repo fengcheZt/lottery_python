@@ -30,7 +30,6 @@ def short(request):
     big_small_flg=get_is_skewness_bigsmall(results)
     prime_flg=get_is_skewness_prime(results)
     sum_flg = get_is_shewness_sum(results)
-    sum_flg = get_is_shewness_sum(results)
     context = {'odd_event_flg': odd_event_flg,'big_small_flg':big_small_flg,'prime_flg':prime_flg,'sum_flg':sum_flg}
     return render(request,'short.html',context)
 def mid(request):
@@ -82,7 +81,10 @@ def short_term_num(request):
 
 def selectNo(request):
     return render(request,'selectNo.html')
-
+def showWinningNumbers(request):
+    results=Ssqdata.objects.all();
+    context = {'num_list': results}
+    return render(request, 'selectNo.html', context)
 def showNo(request):
     results=getHitTheJackpotNo()
     # results = get_short_data_all()

@@ -80,7 +80,9 @@ def getConditionsAferAnalyzeByRatio(args={},results=(),analysisInfo={}):
         print(msg)
         analysisInfo['jiouInfo'] = msg
     return args
+
 def get_is_skewness(results):
+    """判断是否出现奇偶偏态"""
     merge_results = ()
     for i in results:
         merge_results = merge_results + i
