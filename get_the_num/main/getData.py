@@ -101,12 +101,12 @@ def get_long_data():
     conn.close()
     return results
 """
-    获得遗漏期数数据
+    获得红球遗漏期数数据
 """
 def get_losing_data(count=-1):
-    conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python")
+    conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python",cursorclass=pymysql.cursors.DictCursor)
     cur = conn.cursor()
-    sql = "SELECT t.`num_01`,t.`num_02`,t.`num_03`,t.`num_04`,t.`num_05`,t.`num_06`,t.`num_07`,t.`num_08`,t.`num_09`,t.`num_10`,t.`num_11`,t.`num_12`,t.`num_13`,t.`num_14`,t.`num_15`,t.`num_16`,t.`num_17`,t.`num_18`,t.`num_19`,t.`num_20`,t.`num_21`,t.`num_22`,t.`num_23`,t.`num_24`,t.`num_25`,t.`num_26`,t.`num_27`,t.`num_28`,t.`num_29`,t.`num_30`,t.`num_31`,t.`num_32`,t.`num_33`  FROM red_losing_lottery t"
+    sql = "SELECT t.`termnum`, t.`num_01`,t.`num_02`,t.`num_03`,t.`num_04`,t.`num_05`,t.`num_06`,t.`num_07`,t.`num_08`,t.`num_09`,t.`num_10`,t.`num_11`,t.`num_12`,t.`num_13`,t.`num_14`,t.`num_15`,t.`num_16`,t.`num_17`,t.`num_18`,t.`num_19`,t.`num_20`,t.`num_21`,t.`num_22`,t.`num_23`,t.`num_24`,t.`num_25`,t.`num_26`,t.`num_27`,t.`num_28`,t.`num_29`,t.`num_30`,t.`num_31`,t.`num_32`,t.`num_33`  FROM red_losing_lottery t ORDER BY TERMNUM DESC"
     if count>0:
         sql=sql+" limit "+str(count)
     try:

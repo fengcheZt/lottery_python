@@ -74,7 +74,7 @@ def get_ssq_num():
     return it
 def parse_one_page():
     html = get_ssq_html(1)
-    soup = BeautifulSoup(html, "lxml")
+    soup = BeautifulSoup(html, "html.parser")
     i=0
     for item in soup.select('tr')[2:-1]:
         yield {
@@ -122,7 +122,7 @@ def insertData():
         # bytes(hashStr, encoding="utf8")
         m = hashlib.md5(bytes(hashStr, encoding="utf8"))
         hashcode = m.hexdigest()
-
+        # To determine if the data exist by hashcode
         querySql='SELECT COUNT(1) FROM SSQDATA T WHERE T.HASHCODE ="%s"'% (hashcode)
         cur.execute(querySql)
         data = cur.fetchone()

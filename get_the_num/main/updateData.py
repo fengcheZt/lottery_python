@@ -1,8 +1,9 @@
-from inserLosingLotteryData import updateLosingLottery
-from insertThripleNum import updateThripleData
-from inserDHRData import updateDHR
-from insertPairNum import updatePairData
-from insertSSQData import updateSSQData
+from get_the_num.main.mid_term.inserLosingLotteryData import updateLosingLottery
+from get_the_num.main.long_term.insertThripleNum import updateThripleData
+from get_the_num.main.long_term.inserDHRData import updateDHR
+from get_the_num.main.long_term.insertPairNum import updatePairData
+from get_the_num.main.insertSSQData import updateSSQData
+import logging
 def updateData():
     # 更新最新的数据
     updateSSQData()
@@ -14,6 +15,8 @@ def updateData():
     updatePairData()
     # 更新一组3号数据
     updateThripleData()
+
+    logging.critical("update Data done.")
 if __name__ =='__main__':
     # 更新最新的数据
     updateData()

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pymysql
-from getData import get_long_data
+from get_the_num.main.getData import get_long_data
 import itertools
 import logging
 '''

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>未中奖期数表</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>期号</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+            <th>21</th>
+            <th>22</th>
+            <th>23</th>
+            <th>24</th>
+            <th>25</th>
+            <th>26</th>
+            <th>27</th>
+            <th>28</th>
+            <th>29</th>
+            <th>30</th>
+            <th>31</th>
+            <th>32</th>
+            <th>33</th>
+        </tr>
+        {% for num in num_list %}
+            <tr>
+                <td>{{ num.termnum }}</td>
+                <td>{{ num.num_01 }}</td>
+                <td>{{ num.num_02 }}</td>
+                <td>{{ num.num_03 }}</td>
+                <td>{{ num.num_04 }}</td>
+                <td>{{ num.num_05 }}</td>
+                <td>{{ num.num_06 }}</td>
+                <td>{{ num.num_07 }}</td>
+                <td>{{ num.num_08 }}</td>
+                <td>{{ num.num_09 }}</td>
+                <td>{{ num.num_10 }}</td>
+                <td>{{ num.num_11 }}</td>
+                <td>{{ num.num_12 }}</td>
+                <td>{{ num.num_13 }}</td>
+                <td>{{ num.num_14 }}</td>
+                <td>{{ num.num_15 }}</td>
+                <td>{{ num.num_16 }}</td>
+                <td>{{ num.num_17 }}</td>
+                <td>{{ num.num_18 }}</td>
+                <td>{{ num.num_19 }}</td>
+                <td>{{ num.num_20 }}</td>
+                <td>{{ num.num_21 }}</td>
+                <td>{{ num.num_22 }}</td>
+                <td>{{ num.num_23 }}</td>
+                <td>{{ num.num_24 }}</td>
+                <td>{{ num.num_25 }}</td>
+                <td>{{ num.num_26 }}</td>
+                <td>{{ num.num_27 }}</td>
+                <td>{{ num.num_28 }}</td>
+                <td>{{ num.num_29 }}</td>
+                <td>{{ num.num_30 }}</td>
+                <td>{{ num.num_31 }}</td>
+                <td>{{ num.num_32 }}</td>
+                <td>{{ num.num_33 }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

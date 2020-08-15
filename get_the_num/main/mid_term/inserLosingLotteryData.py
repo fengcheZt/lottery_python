@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pymysql
-from getData import get_all_ssq_data
+from get_the_num.main.getData import get_all_ssq_data
 import itertools
 import logging
 '''

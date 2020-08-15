@@ -115,3 +115,11 @@ def testData1(request):
     c = int(a) + int(b)
     r = HttpResponse(ajax_string + str(c))
     return r
+from get_the_num.main.getData import get_losing_data
+def not_hit_term_table(request):
+    results=get_losing_data(50)
+    context = {'num_list': results}
+    return render(request, 'NotHitTermTable.html', context)
+#每次启动更新最新数据
+from get_the_num.main.updateData import updateData
+# updateData()

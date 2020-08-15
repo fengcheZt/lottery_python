@@ -11,6 +11,7 @@ from .short_term.ac_analyze import getConditionsAfterAnalyzeByAcValue
 from .short_term.loose_analyze import getConditionsAfterAnalyzeByLooseValue
 from .short_term.section_analyze import getConditionsAfterAnalyzeBySection
 from .short_term.consective_num_analyze import getConditionAfterAnalyzeConsectiveNum
+
 def getHitTheJackpotNo(request):
     # results = AnalyzeIndex.objects.filter(odd_even_ratio=1.00,sum_value=21)
 

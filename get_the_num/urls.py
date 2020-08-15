@@ -24,4 +24,5 @@ urlpatterns = [
     path('selectNo/',views.selectNo,name='selectNo'),
     path('showNo/',views.showNo,name='showNo'),
     path('testData/',views.testData,name='testData'),
+    path('notHitTermTable/',views.not_hit_term_table,name='not_hit_term_table'),
 ]
