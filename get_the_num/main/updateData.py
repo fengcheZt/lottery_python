@@ -16,6 +16,7 @@ def updateData():
     # 更新一组3号数据
     updateThripleData()
 
+
     logging.critical("update Data done.")
 if __name__ =='__main__':
     # 更新最新的数据

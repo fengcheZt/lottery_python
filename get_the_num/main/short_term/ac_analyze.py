@@ -14,7 +14,8 @@ def analyzeByAcValue():
     return sql
 def getConditionsAfterAnalyzeByAcValue(args={},analysisInfo={}):
     # AC值6,7,8,9最为常见
-    args['analyzeindex__ac_value__in']=[6,7,8,9]
+    args['analyzeindex__ac_value__lt']=9
+    args['analyzeindex__ac_value__gt'] = 6
     msg="ac值分析，取ac值为6,7,8,9的数据"
     print(msg)
     analysisInfo['acInfo']=msg

@@ -79,6 +79,7 @@ def insertDHRData(results):
        conn.rollback()
     cur.close()
     conn.close()
+
 def updateDHR():
     results = get_long_data()
     insertDHRData(results)

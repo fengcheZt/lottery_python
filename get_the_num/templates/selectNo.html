@@ -5,45 +5,80 @@
     <title>选号</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
     <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
-
+    <script src="/static/js/clipboard.min.js" type="text/javascript"></script>
+    <style>
+        .c-icon-ball-red{
+            background-position:0 -240px !important;
+        }
+        .c-icon{
+            display:inline-block ;
+            background:url(https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/global/img/icons_441e82f.png) no-repeat 0 0
+        }
+        .op_caipiao_ball_red{
+            color:#f54646
+        }
+        .c-border .c-gap-right-small{
+            margin-right:5px
+        }
+        .op_caipiao_ball span{
+            line-height:38px;
+            vertical-align:middle;
+            font-size:20px;
+            text-align:center;
+            width: 38px;
+        }
+        .op_caipiao_ball_blue{
+            color:#39f;
+        }
+        .c-icon-ball-blue{
+            background-position:-48px -240px;
+        }
+    </style>
 </head>
 <body>
-<button  class="send_Ajax">选号</button>
-<input type="checkbox" id="jiou" name="analysis" checked>奇偶分析</input>
+<button  class="send_Ajax">选号</button><br>
+    <span>短期分析：</span><input type="checkbox" id="duanqiAll" checked>全选</input>
+    <input type="checkbox" id="jiou" name="analysis" checked>奇偶分析</input>
     <input type="checkbox" id="daxiao" name="analysis" checked>大小分析</input>
     <input type="checkbox" id="zhishu" name="analysis" checked>质数分析</input>
     <input type="checkbox" id="hezhi" name="analysis" checked>和值分析</input>
     <input type="checkbox" id="ac" name="analysis" checked>ac值分析</input>
     <input type="checkbox" id="sandu" name="analysis" checked>散度分析</input>
     <input type="checkbox" id="qujian3" name="analysis" checked>3区间偏态分析</input>
-    <input type="checkbox" id="lianhao" name="analysis" checked>连号分析</input>
+    <input type="checkbox" id="lianhao" name="analysis" checked>连号分析</input><br>
+
+    <span>中期分析：</span><input type="checkbox" id="zhongqiAll" name="duanqiAnalysis" checked>全选</input>
+    <input type="checkbox" id="qushi" name="zhongqiAnalysis" checked>趋势反转分析</input>
+    <input type="checkbox" id="shengsanlang" name="zhongqiAnalysis" checked>升三浪分析</input>
+    <input type="checkbox" id="jiangsanlang" name="zhongqiAnalysis" checked>降三浪分析</input>
+    <input type="checkbox" id="shuangdi" name="zhongqiAnalysis" checked>双底分析</input><br>
+
+    <span>长期分析：</span><input type="checkbox" id="changqiAll" name="longqiAnalysis" checked>全选</input>
+    <input type="checkbox" id="dhr" name="changqiAnalysis" checked>DHR分析</input>
+    <input type="checkbox" id="chengdui" name="changqiAnalysis" checked>成对号分析</input>
+    <input type="checkbox" id="chengtuan" name="changqiAnalysis" checked>成团号分析</input>
     <table class="table">
-        <tr>
-            <th colspan="6">红球号码</th>
-            <th>篮球号码</th>
-        </tr>
-        {% for num in num_list %}
-            <tr>
-                <td>{{ num.red01 }}</td>
-                <td>{{ num.red02 }}</td>
-                <td>{{ num.red03 }}</td>
-                <td>{{ num.red04 }}</td>
-                <td>{{ num.red05 }}</td>
-                <td>{{ num.red06 }}</td>
-                <td>{{ num.blue01 }}</td>
-            </tr>
-        {% endfor %}
+
     </table>
+    <div id="actionButton" style="display: none">
+        <button id="recordNum">记录此组号码</button>
+        <button id="copyNum">复制此组号码</button>
+    </div>
+    <br>
     <div id="analysisResultInfo"></div>
+
 </body>
 <script>
 
-
+       var willBuyNumList
+       var copyNumText=''
+       var arrayObj = new Array()
        $(".send_Ajax").click(function(){
            $.ajax({
-                url :"{% url 'get_the_num:testData' %}",
+                url :"{% url 'get_the_num:getAnalysisNum' %}",
                 type:'GET',
                 data:{
+                    duanqiFlg:$('#duanqiAll').prop('checked'),
                     jiouFlg:$('#jiou').prop('checked'),
                     daxiaoFlg:$('#daxiao').prop('checked'),
                     zhishuFlg:$('#zhishu').prop('checked'),
@@ -51,19 +86,50 @@
                     acFlg:$('#ac').prop('checked'),
                     sanduFlg:$('#sandu').prop('checked'),
                     qujian3Flg:$('#qujian3').prop('checked'),
-                    lianhaoFlg:$('#lianhao').prop('checked')
+                    lianhaoFlg:$('#lianhao').prop('checked'),
+
+                    zhongqiFlg:$('#zhongqiAll').prop('checked'),
+                    qushiFlg:$('#qushi').prop('checked'),
+                    shengsanlangFlg:$('#shengsanlang').prop('checked'),
+                    jiangsanlangFlg:$('#jiangsanlang').prop('checked'),
+                    shuangdiFlg:$('#shuangdi').prop('checked'),
+
+                    changqiFlg:$('#changqiAll').prop('checked'),
+                    dhrFlg:$('#dhr').prop('checked'),
+                    chengduiFlg:$('#chengdui').prop('checked'),
+                    chengtuanFlg:$('#chengtuan').prop('checked'),
                 },
                 dataType:'JSON',
                 success:function (responseJson) {
-
+                    copyNumText=''
                     //var v = JSON.parse(arg.data);
                     dataHtmlTH="<tr><th colspan='6'>红球号码</th><th>篮球号码</th></tr>"
                     dataHtml=""
                     arg=responseJson.data
+                    willBuyNumList=arg
+
+                    classStr="class='op_caipiao_ball'><span class='c-icon c-icon-ball-red op_caipiao_ball_red c-gap-right-small'>"
+                    classStr_blue="class='op_caipiao_ball'><span class='c-icon c-icon-ball-blue op_caipiao_ball_blue c-gap-right-small'>"
                     for(var i=0;i<arg.length;i++){
-                        dataHtml=dataHtml+"<tr><td>"+arg[i].fields.red01+"</td><td>"+arg[i].fields.red02+"</td><td>"+arg[i].fields.red03+"</td><td>"+arg[i].fields.red04+"</td><td>"+arg[i].fields.red05+"</td><td>"+arg[i].fields.red06+"</td><td>"+arg[i].fields.blue01+"</tr>"
+                        dataHtml=dataHtml+"<tr><td "+classStr+arg[i].fields.red01+"</span></td><td "+classStr+arg[i].fields.red02+"</td><td "+classStr+arg[i].fields.red03+"</td><td "+classStr+arg[i].fields.red04+"</td><td "+classStr+arg[i].fields.red05+"</td><td "+classStr+arg[i].fields.red06+"</td><td "+classStr_blue+arg[i].fields.blue01+"</tr>"
+                        copyNumText=copyNumText+arg[i].fields.red01+","+arg[i].fields.red02+","+arg[i].fields.red03+","+arg[i].fields.red04+","+arg[i].fields.red05+","+arg[i].fields.red06+"+"+arg[i].fields.blue01+"\r\n"
+                        var recordNumJson={
+                            red01:arg[i].fields.red01,
+                            red02:arg[i].fields.red02,
+                            red03:arg[i].fields.red03,
+                            red04:arg[i].fields.red04,
+                            red05:arg[i].fields.red05,
+                            red06:arg[i].fields.red06,
+                            blue01:arg[i].fields.blue01
+                        }
+                        arrayObj[i]=JSON.stringify(recordNumJson)
                     }
                     $(".table").html(dataHtmlTH+dataHtml)
+                    if(dataHtml !=""){
+                        $("#actionButton").css('display',"block")
+                    }else{
+                        $("#actionButton").css('display',"none")
+                    }
                     var msg=eval(responseJson.analysisInfo)
                     var showMsg=""
 
@@ -73,11 +139,79 @@
 
 
                     $("#analysisResultInfo").html(showMsg)
-
+                    $("#recordNum").attr("disabled",false)
 
                 }
 
             })
            });
+       $.ajaxSetup({
+        data: {"csrfmiddlewaretoken": '{{ csrf_token }}'},
+    });
+       $("#recordNum").click(function(){
+           $.ajax({
+                url :"{% url 'get_the_num:recordNum' %}",
+                type:'POST',
+                traditional:true,
+                data:{
+                    willBuyNumList:arrayObj,
+                },
+                dataType:'JSON',
+                success:function (responseJson) {
+                    $("#recordNum").attr("disabled",true)
+                    alert('记录成功')
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('记录失败')
+                }
+
+            })
+           });
+    var clipboard = new ClipboardJS('#copyNum', {
+        text: function() {
+            alert("复制成功")
+            return copyNumText;
+        }
+    });
+    // 获得上面的复选框
+        var $duanqiAll = $("#duanqiAll");
+        // alert($selectAll.prop("checked")); // 返回undefined未定义
+        $duanqiAll.click(function() {
+            // alert($selectAll.prop("checked"));
+            if ($duanqiAll.prop("checked") == true) {
+                // 上面的复选框已被选中
+                $(":checkbox[name='analysis']").prop("checked", true);
+            } else {
+                // 上面的复选框没被选中
+                $(":checkbox[name='analysis']").prop("checked", false);
+            }
+        });
+// 获得上面的复选框
+        var $zhongqiAll = $("#zhongqiAll");
+        // alert($selectAll.prop("checked")); // 返回undefined未定义
+        $zhongqiAll.click(function() {
+            // alert($selectAll.prop("checked"));
+            if ($zhongqiAll.prop("checked") == true) {
+                // 上面的复选框已被选中
+                $(":checkbox[name='zhongqiAnalysis']").prop("checked", true);
+            } else {
+                // 上面的复选框没被选中
+                $(":checkbox[name='zhongqiAnalysis']").prop("checked", false);
+            }
+        });
+        // 获得上面的复选框
+        var $changqiAll = $("#changqiAll");
+        // alert($selectAll.prop("checked")); // 返回undefined未定义
+        $changqiAll.click(function() {
+            // alert($selectAll.prop("checked"));
+            if ($changqiAll.prop("checked") == true) {
+                // 上面的复选框已被选中
+                $(":checkbox[name='changqiAnalysis']").prop("checked", true);
+            } else {
+                // 上面的复选框没被选中
+                $(":checkbox[name='changqiAnalysis']").prop("checked", false);
+            }
+        });
+
 </script>
 </html>

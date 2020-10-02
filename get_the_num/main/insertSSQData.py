@@ -102,6 +102,7 @@ def excel_create(ceshi):
             ws.write(index,i,j[i])
         index +=1
         wb.save(newTable)
+from get_the_num.models import SelectedSsqdata
 def insertData():
     conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python")
     cur = conn.cursor()
@@ -130,6 +131,11 @@ def insertData():
         if(data[0]==0):
             value=(opendate, termnum,red01,red02,red03,red04,red05,red06,blue01,hashcode)
             values.append(value)
+            # if (data[0] > 1):
+            #     SelectedSsqdata.objects.all().delete()
+            # elif (data[0] == 1):
+            #     SelectedSsqdata.objects.filter(createdate ).delete()
+            # SelectedSsqdata.objects.update(data_flg='0')
 
 
     try:
@@ -144,7 +150,6 @@ def insertData():
        conn.rollback()
     cur.close()
     conn.close()
-
 
 def updateSSQData():
     # ceshi = get_ssq_num()

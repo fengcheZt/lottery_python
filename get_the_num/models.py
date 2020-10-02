@@ -139,6 +139,7 @@ class RedLosingLottery(models.Model):
 
 
 class SelectedSsqdata(models.Model):
+    id = models.AutoField(primary_key=True)
     red01 = models.IntegerField(blank=True, null=True)
     red02 = models.IntegerField(blank=True, null=True)
     red03 = models.IntegerField(blank=True, null=True)
@@ -146,7 +147,20 @@ class SelectedSsqdata(models.Model):
     red05 = models.IntegerField(blank=True, null=True)
     red06 = models.IntegerField(blank=True, null=True)
     blue01 = models.IntegerField(blank=True, null=True)
+    termnum = models.CharField(db_column='termNum', max_length=10, blank=True, null=True)
+    def __init__(self, red01, red02,red03,red04,red05,red06,blue01,termnum):
+        super().__init__()
+        self.red01=red01
+        self.red02=red02
+        self.red03=red03
+        self.red04=red04
+        self.red05=red05
+        self.red06=red06
+        self.blue01=blue01
+        self.termnum=termnum
 
+    def __str__(self):
+        return u"%s, %s, %s,%s, %s, %s,%s, %s" % (self.red01, self.red02, self.red03,self.red04,self.red05,self.red06,self.blue01,self.termnum)
     class Meta:
         managed = True
         db_table = 'selected_ssqdata'

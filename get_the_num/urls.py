@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+
+from django.views.decorators.csrf import csrf_exempt
 app_name='get_the_num'
 urlpatterns = [
     path('index/',views.index),
@@ -17,12 +19,17 @@ urlpatterns = [
     path('blue_ecg3/',views.electrocardiograpy3_blue,name='blue_ecg3'),
     path('blue_ecg/index/',views.electrocardiograpy_index_blue,name='blue_ecgIndex'),
     path('short/',views.short,name='short'),
-    path('win/',views.win),
+    path('win/',views.win,name='win'),
     path('short_term_num/',views.short_term_num,name='short_term'),
     path('mid/',views.mid,name='mid'),
     path('long/',views.long,name='long'),
     path('selectNo/',views.selectNo,name='selectNo'),
     path('showNo/',views.showNo,name='showNo'),
-    path('testData/',views.testData,name='testData'),
-    path('notHitTermTable/',views.not_hit_term_table,name='not_hit_term_table'),
+    path('getAnalysisNum/',views.getAnalysisNum,name='getAnalysisNum'),
+    # path('notHitTermTable/',views.not_hit_term_table,name='not_hit_term_table'),
+    path('tendencyRevertAnalysis/',views.tendencyRevertAnalysis,name='tendencyRevertAnalysis'),
+    path('upThreeWavesAnalysis/',views.tendencyRevertAnalysis,name='upThreeWavesAnalysis'),
+    path('downThreeWavesAnalysis/',views.tendencyRevertAnalysis,name='downThreeWavesAnalysis'),
+    path('midAnalysis/',views.midAnalysis,name='midAnalysis'),
+    path('recordNum/',csrf_exempt(views.recordNum),name='recordNum'),
 ]

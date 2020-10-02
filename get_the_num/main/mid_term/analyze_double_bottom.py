@@ -24,7 +24,37 @@ def analyzeByDoubleBottom(results,alternative_results=()):
         print("双底分析，正处于该趋势的号码为：")
         print(trend_num_list)
     return getIntersectionResults(trend_num_list, alternative_results)
+def getDoubleBottom(results):
+    trend_num_list=[]
+    for index, value in enumerate(results[len(results)-1]):
+        if value in range(5,9):
+            section_02_value=results[len(results)-value-2][index]
+            if section_02_value in range(value-1,value+2):
+                trend_num_list.append(index+1)
+    if len(trend_num_list)==0:
+        print("双底分析,没有处于该趋势的号码")
+    else:
+        print("双底分析，正处于该趋势的号码为：")
+        print(trend_num_list)
+    return trend_num_list
 
+def getConditionByDoubleBottom(args=[],results=(),analysisInfo={}):
+    trend_num_list=args
+    for index, value in enumerate(results[len(results)-1]):
+        if value in range(5,9):
+            section_02_value=results[len(results)-value-2][index]
+            if section_02_value in range(value-1,value+2):
+                trend_num_list.append(index+1)
+    if len(trend_num_list)==0:
+        msg = "双底分析,没有处于该趋势的号码"
+        print(msg)
+        analysisInfo['shuangdiInfo'] = msg
+    else:
+        msg = "双底分析，正处于该趋势的号码为："+str(trend_num_list)
+        print(msg)
+        analysisInfo['shuangdiInfo'] = msg
+    # trend_num_list.append(15)
+    return trend_num_list
 if __name__ =='__main__':
     results=get_losing_data()
     # results=((1,1,1),(2,2,2),(3,3,3),(4,4,0),(5,0,1),(0,1,2),(1,2,3),(2,3,4),(3,4,5),(4,5,6),(5,6,7))
