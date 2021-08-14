@@ -16,11 +16,17 @@ class AllSsqdata(models.Model):
     red05 = models.IntegerField(blank=True, null=True)
     red06 = models.IntegerField(blank=True, null=True)
     blue01 = models.IntegerField(blank=True, null=True)
+    allnum=models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = True
         db_table = 'all_ssqdata'
-
+class MidAllSsqdata(models.Model):
+    all_ssq = models.ForeignKey(AllSsqdata, models.DO_NOTHING, blank=True, null=True)
+    num = models.IntegerField(blank=True, null=True)
+    class Meta:
+        managed = True
+        db_table = 'mid_all_ssqdata'
 
 class AnalyzeIndex(models.Model):
     all_ssq = models.ForeignKey(AllSsqdata, models.DO_NOTHING, blank=True, null=True)

@@ -77,7 +77,7 @@ def analyzeMid(alternative_results=()):
 
 if __name__ =='__main__':
     # 更新最新的数据
-    updateData()
+    # updateData()
     alternative_results=()
     #------------------------------------------ 短期分析
     alternative_results=analyzeShort()

@@ -31,6 +31,32 @@ def insertAllData():
        conn.rollback()
     cur.close()
     conn.close()
+def updateAllDataAllNum():
+    conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python")
+    cur = conn.cursor()
+    sql_all = 'UPDATE ALL_SSQDATA SET ALLNUM= VALUES (%s,%s,%s,%s,%s,%s,%s) '
+    values = []
+    redBall = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
+               29,
+               30, 31, 32, 33]
+    blueBall = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    redList = list(itertools.combinations(redBall, 6))
+    for i in redList:
+        for j in blueBall:
+            ij = i + (j,)
+            values.append(ij)
+    try:
+       # 执行sql语句
+       cur.executemany(sql, values)
+       # cur.execute(sql)
+       # 提交到数据库执行
+       conn.commit()
+    except Exception as e:
+       print(e)
+       # 如果发生错误则回滚
+       conn.rollback()
+    cur.close()
+    conn.close()
 def insertAnalyzeIndex():
     conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python")
     cur = conn.cursor()

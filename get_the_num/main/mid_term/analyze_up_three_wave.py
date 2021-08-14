@@ -31,7 +31,7 @@ def analyzeByUpThreeWave(results,alternative_results=()):
         return alternative_results
     else:
         return al_results
-def getUpThreeWaveNum(results):
+def getUpThreeWaveNum(results,analysisInfo={}):
     trend_num_list=[]
     for index, value in enumerate(results[len(results)-1]):
         if value in range(9,12):
@@ -40,15 +40,18 @@ def getUpThreeWaveNum(results):
                 section_03_value=results[len(results)-value-2-section_02_value-1][index]
                 if section_03_value in range(1,4):
                     trend_num_list.append(index+1)
-    if len(trend_num_list)==0:
-        print("升三浪分析,没有处于该趋势的号码")
+    if len(trend_num_list) == 0:
+        msg = "升三浪分析,没有处于该趋势的号码"
+        print(msg)
+        analysisInfo['shengsanlangInfo'] = msg
     else:
-        print("升三浪分析，正处于该趋势的号码为：")
-        print(trend_num_list)
+        msg = "升三浪分析，正处于该趋势的号码为：" + str(trend_num_list)
+        print(msg)
+        analysisInfo['shengsanlangInfo'] = msg
     return trend_num_list
 
-def getConditionByUpThreeWaveNum(args=[],results=(),analysisInfo={}):
-    trend_num_list=args
+def getConditionByUpThreeWaveNum(args={},results=(),analysisInfo={}):
+    trend_num_list=[]
     for index, value in enumerate(results[len(results)-1]):
         if value in range(9,12):
             section_02_value=results[len(results)-value-2][index]
@@ -64,6 +67,7 @@ def getConditionByUpThreeWaveNum(args=[],results=(),analysisInfo={}):
         msg = "升三浪分析，正处于该趋势的号码为："+str(trend_num_list)
         print(msg)
         analysisInfo['shengsanlangInfo'] = msg
+        args['midallssqdata__num__in'] = args['midallssqdata__num__in']+trend_num_list
     return trend_num_list
 if __name__ =='__main__':
     results=get_losing_data()
