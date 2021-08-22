@@ -32,4 +32,6 @@ urlpatterns = [
     path('downThreeWavesAnalysis/',views.tendencyRevertAnalysis,name='downThreeWavesAnalysis'),
     path('midAnalysis/',views.midAnalysis,name='midAnalysis'),
     path('recordNum/',csrf_exempt(views.recordNum),name='recordNum'),
+    path('matrix/',csrf_exempt(views.rotaryMaritx),name='matrix'),
+    path('selectNumByMatrix/',csrf_exempt(views.selectNumByMatrix),name='selectNumByMatrix'),
 ]

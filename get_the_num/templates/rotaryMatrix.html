@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旋转矩阵选号</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+    <script src="/static/js/clipboard.min.js" type="text/javascript"></script>
+    <style>
+        .c-icon-ball-red{
+            background-position:0 -240px !important;
+        }
+        .c-icon{
+            display:inline-block ;
+            background:url(https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/global/img/icons_441e82f.png) no-repeat 0 0
+        }
+        .op_caipiao_ball_red{
+            color:#f54646
+        }
+        .c-border .c-gap-right-small{
+            margin-right:5px
+        }
+        .op_caipiao_ball span{
+            line-height:38px;
+            vertical-align:middle;
+            font-size:20px;
+            text-align:center;
+            width: 38px;
+        }
+        .op_caipiao_ball_blue{
+            color:#39f;
+        }
+        .c-icon-ball-blue{
+            background-position:-48px -240px;
+        }
+        .buttonUl li{
+            width: 150px;
+            float: left;
+            list-style-type: none;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<h3 style="color: red">红球</h3>
+<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#E1E1E1">
+      <tbody><tr>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="01">
+          01</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="02">
+          02</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="03">
+          03</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="04">
+          04</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="05">
+          05</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="06">
+          06</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="07">
+          07</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="08">
+          08</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="09">
+          09</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="10">
+          10</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="11">
+          11</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="12">
+          12</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="13">
+          13</td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="14">
+          14</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="15">
+          15</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="16">
+          16</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="17">
+          17</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="18">
+          18</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="19">
+          19</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="20">
+          20</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="21">
+21</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="22">
+          22</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="23">
+          23</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="24">
+          24</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="25">
+          25</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="26">
+          26</td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="27">
+          27</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="28">
+          28</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="29">
+          29</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="30">
+          30</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="31">
+31 </td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="32">
+32 </td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="33">
+33 </td>
+        <td colspan="2" bgcolor="#FFFFFF">          机选
+          <select name="machine" id="machine" onchange="SetCheck(RndChkNums(this.value))">
+		  <option value="0"></option>
+		  <option value="7">7</option>
+		  <option value="8">8</option>
+		  <option value="9">9</option>
+		  <option value="10">10</option>
+		  <option value="11">11</option>
+		  <option value="12">12</option>
+		  <option value="13">13</option>
+		  <option value="14">14</option>
+		  <option value="15">15</option>
+		  <option value="16">16</option>
+		  <option value="17">17</option>
+		  <option value="18">18</option>
+		  <option value="19">19</option>
+		  <option value="20">20</option>
+          </select></td>
+        <td colspan="4" bgcolor="#FFFFFF">请输入生成注数，不能超过2000：
+          <input size="5" name="NoteFew" value="500">
+          &nbsp;注</td>
+        </tr>
+    </tbody></table>
+<br>
+<h3 style="color:blue">蓝球</h3>
+<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#E1E1E1">
+      <tbody><tr>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="01">
+          01</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="02">
+          02</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="03">
+          03</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="04">
+          04</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="05">
+          05</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="06">
+          06</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="07">
+          07</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="08">
+          08</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="09">
+          09</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="10">
+          10</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="11">
+          11</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="12">
+          12</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="13">
+          13</td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="14">
+          14</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="15">
+          15</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="blue_number" value="16">
+          16</td>
+          <td bgcolor="#FFFFFF" colspan="10"></td>
+      </tr>
+      </tbody>
+</table>
+    <button onclick="selectedDone()">选好了</button>
+    <table><tr id="selectedNum"></tr></table>
+    <br>
+    <br>
+    <h3>旋转矩阵</h3>
+    <ul class="buttonUl">
+        <li><button id="x755" onclick="selectNumByMatrix('755')" style="display: none">7个号码中5保5</button></li>
+        <li><button id="x1054" onclick="selectNumByMatrix('1054')" style="display: none">10个号码中5保4</button></li>
+        <li><button id="x1065" onclick="selectNumByMatrix('1065')" style="display: none">10个号码中6保5</button></li>
+    </ul>
+<br>
+<table class="table">
+    </table>
+
+</body>
+<script>
+    var selectedNumStr=''
+    var arrayObjRed = new Array();
+    var arrayObjBlue = new Array();
+    function selectedDone() {
+        var redAmount=$("input[name='number']:checked").length
+        if( redAmount<6){
+            alert("请选择最少七个红球")
+        }else{
+            var dataHtml=""
+            $("input[name='number']:checked").each(function(){
+             dataHtml=dataHtml+"<span style='color:red;font-size:20px'>"+$(this).val()+"&nbsp;</span>"
+                arrayObjRed.push($(this).val())
+            });
+            dataHtml=dataHtml+"&nbsp;&nbsp;&nbsp;"
+            $("input[name='blue_number']:checked").each(function(){
+             dataHtml=dataHtml+"<span style='color:blue;font-size:20px'>"+$(this).val()+"&nbsp;</span>"
+                arrayObjBlue.push($(this).val())
+            });
+            $("#selectedNum").html(dataHtml)
+
+            if(redAmount == 7){
+                $("#x755").css('display','block')
+            }else if (redAmount == 10) {
+                $("#x1054").css('display','block')
+                $("#x1065").css('display','block')
+
+            }
+        }
+
+    }
+    function selectNumByMatrix(matrixNum){
+        $.ajax({
+                url :"{% url 'get_the_num:selectNumByMatrix' %}",
+                type:'POST',
+                traditional:true,
+                data:{
+                    matrixNum:matrixNum,
+                    selectedRedNum:arrayObjRed,
+                    selectedBlueNum:arrayObjBlue
+                },
+                dataType:'JSON',
+                success:function (responseJson) {
+                    copyNumText=''
+                    //var v = JSON.parse(arg.data);
+                    dataHtmlTH="<tr><th colspan='6'>红球号码</th><th>篮球号码</th></tr>"
+                    dataHtml=""
+                    arg=responseJson.data
+                    willBuyNumList=arg
+                    $("#Total").text("筛选后总条数："+responseJson.total)
+                    classStr="class='op_caipiao_ball'><span class='c-icon c-icon-ball-red op_caipiao_ball_red c-gap-right-small'>"
+                    classStr_blue="class='op_caipiao_ball'><span class='c-icon c-icon-ball-blue op_caipiao_ball_blue c-gap-right-small'>"
+                    for(var i=0;i<arg.length;i++){
+                        dataHtml=dataHtml+"<tr><td "+classStr+arg[i][0]+"</span></td><td "+classStr+arg[i][1]+"</td><td "+classStr+arg[i][2]+"</td><td "+classStr+arg[i][3]+"</td><td "+classStr+arg[i][4]+"</td><td "+classStr+arg[i][5]+"</td><td "+classStr_blue+arg[i][6]+"</tr>"
+
+                    }
+                    $(".table").html(dataHtmlTH+dataHtml)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('选号失败')
+                }
+
+            })
+    }
+</script>
+</html>

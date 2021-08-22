@@ -2,7 +2,7 @@
     10个号码中6保5型旋转矩阵
 """
 from get_the_num.main.getData import get_last_one_data
-def get_matrix_10_5_4(selected_num_list=[]):
+def get_matrix_10_6_5(selected_num_list=[]):
     matrix_list=[]
     selected_num_list.insert(0,-1)
     list =selected_num_list
@@ -30,7 +30,7 @@ def get_matrix_10_5_4(selected_num_list=[]):
 if __name__ =='__main__':
     last_one=get_last_one_data()
     list=[1,2,3,16,19,21,24,25,28,33]
-    results=get_matrix_10_5_4(list)
+    results=get_matrix_10_6_5(list)
     for i in results:
         x=set(last_one)
         y=set(i)

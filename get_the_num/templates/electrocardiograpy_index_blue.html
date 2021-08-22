@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>单号遗漏比心电图(篮球)</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
     <style>
         .ecgClass{
             width:730px;
@@ -18,6 +19,61 @@
         <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:blue_ecg2' %}" />
         <embed class="ecgClass" type="image/svg+xml" src= "{% url 'get_the_num:blue_ecg3' %}" />
     </div>
-
+    <h2>蓝球当期遗漏表</h2><br/>
+    <table class="table">
+        <tr>
+            <th>号码</th>
+            <th>遗漏期数</th>
+        </tr>
+        {% for c in sortResult %}
+            <tr>
+                <td>{{ c.Num }}</td>
+                <td>{{ c.Amount }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h2>蓝球遗漏表</h2><br/>
+    <table class="table">
+        <tr>
+            <th>期号</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+        </tr>
+        {% for num in num_list_blue %}
+            <tr>
+                <td>{{ num.termnum }}</td>
+                <td>{{ num.num_01 }}</td>
+                <td>{{ num.num_02 }}</td>
+                <td>{{ num.num_03 }}</td>
+                <td>{{ num.num_04 }}</td>
+                <td>{{ num.num_05 }}</td>
+                <td>{{ num.num_06 }}</td>
+                <td>{{ num.num_07 }}</td>
+                <td>{{ num.num_08 }}</td>
+                <td>{{ num.num_09 }}</td>
+                <td>{{ num.num_10 }}</td>
+                <td>{{ num.num_11 }}</td>
+                <td>{{ num.num_12 }}</td>
+                <td>{{ num.num_13 }}</td>
+                <td>{{ num.num_14 }}</td>
+                <td>{{ num.num_15 }}</td>
+                <td>{{ num.num_16 }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

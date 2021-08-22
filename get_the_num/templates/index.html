@@ -37,6 +37,7 @@
                     <nav class="nav demo">
                       <ul>
                           <li class="nav__item"><a href="{% url 'get_the_num:selectNo' %}" target="_blank">选号</a></li>
+                          <li class="nav__item"><a href="{% url 'get_the_num:matrix' %}" target="_blank">旋转矩阵选号</a></li>
                         <li class="nav__item active"><a href="{% url 'get_the_num:short'%}" target="_blank">短期分析</a></li>
                         <li class="nav__item">
 {#                            <div class="dropdown">#}
@@ -53,7 +54,8 @@
                             <li class="nav__item active"><a href="{% url 'get_the_num:mid'%}" target="_blank">中期分析</a></li>
                         </li>
                         <li class="nav__item"><a href="{% url 'get_the_num:long'%}" target="_blank">长期分析</a></li>
-                        <li class="nav__item"><a href="{% url 'get_the_num:ecgIndex' %}" target="_blank">单号遗漏比趋势图分析</a></li>
+                        <li class="nav__item"><a href="{% url 'get_the_num:ecgIndex' %}" target="_blank">单号遗漏比趋势图分析(红球)</a></li>
+                          <li class="nav__item"><a href="{% url 'get_the_num:blue_ecgIndex' %}" target="_blank">单号遗漏比趋势图分析（篮球）</a></li>
                         <li class="nav__item"><a href="{% url 'get_the_num:short_term' %}" target="_blank">近期号码</a></li>
                           <li class="nav__item"><a href="{% url 'get_the_num:win' %}" target="_blank">中大奖</a></li>
                       </ul>

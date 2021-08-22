@@ -32,7 +32,7 @@ def getDownThreeWaveNum(results,analysisInfo={}):
             if section_02_value in range(4,9):
                 section_03_value=results[len(results)-value-2-section_02_value-1][index]
                 if section_03_value in range(9,12):
-                    trend_num_list.append(index+1)
+                    trend_num_list.append(index)
     if len(trend_num_list) == 0:
         msg = "降三浪分析,没有处于该趋势的号码"
         print(msg)

@@ -68,7 +68,19 @@ def long(request):
     return render(request,'long.html',context)
 red_chart=RedChart()
 def electrocardiograpy_index_red(request):
-    return render(request, 'electrocardiograpy_index_red.html')
+    results = get_losing_data(50, "dict")
+    dictS=results[0].copy()
+    del dictS['termnum']
+    sortResult=sorted(dictS.items(), key=lambda d:d[1], reverse = True)
+    currentLosingResultList=[]
+    for value in sortResult:
+        currentLosingResult = {}
+        currentLosingResult['Num']=value[0][-2:]
+        currentLosingResult['Amount'] = value[1]
+        currentLosingResultList.append(currentLosingResult)
+    resultsBlue = get_losing_data_blue(50)
+    context = {'num_list': results,'sortResult':currentLosingResultList, 'num_list_blue': resultsBlue}
+    return render(request, 'electrocardiograpy_index_red.html',context)
 def electrocardiograpy1_red(request):
     return red_chart.paint_ecg1()
 def electrocardiograpy2_red(request):
@@ -84,7 +96,18 @@ def electrocardiograpy6_red(request):
 
 blue_chart=BlueChart()
 def electrocardiograpy_index_blue(request):
-    return render(request, 'electrocardiograpy_index_blue.html')
+    resultsBlue = get_losing_data_blue(50)
+    dictS = resultsBlue[0].copy()
+    del dictS['termnum']
+    sortResult = sorted(dictS.items(), key=lambda d: d[1], reverse=True)
+    currentLosingResultList = []
+    for value in sortResult:
+        currentLosingResult = {}
+        currentLosingResult['Num'] = value[0][-2:]
+        currentLosingResult['Amount'] = value[1]
+        currentLosingResultList.append(currentLosingResult)
+    context = { 'sortResult': currentLosingResultList, 'num_list_blue': resultsBlue}
+    return render(request, 'electrocardiograpy_index_blue.html', context)
 def electrocardiograpy1_blue(request):
     return blue_chart.paint_ecg1()
 def electrocardiograpy2_blue(request):
@@ -117,6 +140,23 @@ def showNo(request):
     # results = get_short_data_all()
     context = {'num_list': results}
     return render(request,'selectNo.html',context)
+def rotaryMaritx(request):
+
+    return render(request,'rotaryMatrix.html')
+from get_the_num.main.rotate_matrix.p7_5_5 import get_matrix_7_5_5
+from get_the_num.main.rotate_matrix.p10_5_4 import get_matrix_7_5_5
+from get_the_num.main.rotate_matrix.p10_6_5 import get_matrix_7_5_5
+def selectNumByMatrix(request):
+    matrixNum=request.POST['matrixNum']
+    selectedRedNum = request.POST.getlist('selectedRedNum')
+    selectedBlueNum = request.POST.getlist('selectedBlueNum')
+    switch = {'x755': get_matrix_7_5_5,  # 注意此处不要加括号
+              'x1054': case2,
+              'x1064': case3,
+              }
+    matrix_list=get_matrix_7_5_5(selectedRedNum,selectedBlueNum)
+    ret = {'status': True, 'data':  matrix_list,'total':len(matrix_list)}
+    return HttpResponse(json.dumps(ret), content_type='application/json')
 from django.core import serializers
 import json
 from .models import Ssqdata
@@ -128,7 +168,7 @@ def getAnalysisNum(request):
     # ret = {'status': True, 'data': None}
     # ret['data']=results
     # result =json.dumps(ret);
-    ret = {'status': True, 'data': json.loads(serializers.serialize("json", results['hitNoList'])),'analysisInfo':results['analysisInfo']}
+    ret = {'status': True, 'data': json.loads(serializers.serialize("json", results['hitNoList'])),'analysisInfo':results['analysisInfo'],'total':results['Total']}
 
     return HttpResponse(json.dumps(ret),content_type='application/json')
     # return HttpResponse(serializers.serialize("json", results['hitNoList']))

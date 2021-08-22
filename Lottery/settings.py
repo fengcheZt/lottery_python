@@ -139,3 +139,21 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(HERE, 'static/'),
 )
+
+LOGGING={
+    'version':1,
+    'disable_existing_loggers':False,
+    'handlers':{
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+        },
+    },
+    'loggers':{
+        'django.db.backends':{
+            'handlers':['console'],
+            'propagate':True,
+            'level':'DEBUG',
+        },
+    }
+}

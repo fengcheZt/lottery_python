@@ -57,15 +57,18 @@
     <input type="radio" id="cancelLong" name="changqiAnalysis" checked>取消长期分析</input>
     <input type="radio" id="dhr" name="changqiAnalysis" checked>DHR分析</input>
     <input type="radio" id="chengdui" name="changqiAnalysis">成对号分析</input>
-    <input type="radio" id="chengtuan" name="changqiAnalysis">成团号分析</input>
+    <input type="radio" id="chengtuan" name="changqiAnalysis">成团号分析</input><br>
+    <span>蓝球分析：</span>
+    <input type="checkbox" id="lanOccurNum" name="lanAnalysis" checked>蓝球出现次数分析</input>
+    <input type="checkbox" id="lan" name="lanAnalysis" checked>蓝球遗漏分析</input>
     <table class="table">
-
     </table>
     <div id="actionButton" style="display: none">
         <button id="recordNum">记录此组号码</button>
         <button id="copyNum">复制此组号码</button>
     </div>
     <br>
+    <div id="Total"></div>
     <div id="analysisResultInfo"></div>
 
 </body>
@@ -99,6 +102,9 @@
                     dhrFlg:$('#dhr').prop('checked'),
                     chengduiFlg:$('#chengdui').prop('checked'),
                     chengtuanFlg:$('#chengtuan').prop('checked'),
+
+                    lanFlg:$('#lan').prop('checked'),
+                    lanOccurNumFlg:$('#lanOccurNum').prop('checked'),
                 },
                 dataType:'JSON',
                 success:function (responseJson) {
@@ -108,7 +114,7 @@
                     dataHtml=""
                     arg=responseJson.data
                     willBuyNumList=arg
-
+                    $("#Total").text("筛选后总条数："+responseJson.total)
                     classStr="class='op_caipiao_ball'><span class='c-icon c-icon-ball-red op_caipiao_ball_red c-gap-right-small'>"
                     classStr_blue="class='op_caipiao_ball'><span class='c-icon c-icon-ball-blue op_caipiao_ball_blue c-gap-right-small'>"
                     for(var i=0;i<arg.length;i++){

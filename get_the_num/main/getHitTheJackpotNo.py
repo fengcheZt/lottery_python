@@ -22,6 +22,8 @@ from get_the_num.main.getData import get_pair_data
 from get_the_num.models import ThripleNum
 from django.db.models import Q
 import datetime
+from get_the_num.main.getData import get_losing_data_blue
+from get_the_num.main.getData import get_occur_num_data_blue
 def getHitTheJackpotNo(request):
     # results = AnalyzeIndex.objects.filter(odd_even_ratio=1.00,sum_value=21)
     kwargs = {}
@@ -104,6 +106,33 @@ def getHitTheJackpotNo(request):
             msg = msg + str(i.num) + ','
         analysisInfo["ThripleInfo"] = '成团号，只取最有可能成团的号：' + msg[0:len(msg) - 1]
         print( '成团号，只取最有可能成团的号：' + msg[0:len(msg) - 1])
+    if request.GET['lanFlg'] == 'true':
+        resultsBlue = get_losing_data_blue(50)
+        dictS = resultsBlue[0].copy()
+        del dictS['termnum']
+        sortResult = sorted(dictS.items(), key=lambda d: d[1], reverse=True)
+        currentLosingResultList = []
+        blue01ConditionList=[]
+        for value in sortResult:
+            currentLosingResult = {}
+            currentLosingResult['Num'] = value[0][-2:]
+            currentLosingResult['Amount'] = value[1]
+            blue01ConditionList.append(int(value[0][-2:]))
+            currentLosingResultList.append(currentLosingResult)
+        # blueargs &= Q(blue01__in=',' + str(j) + ',')
+        # kwargs['blue01__in'] = blue01ConditionList[:3]
+        print('蓝球遗漏前三位：' + str(blue01ConditionList[0])+","+str(blue01ConditionList[1])+","+str(blue01ConditionList[2]))
+        analysisInfo["LanInfo"] = '蓝球遗漏前三位：' + str(blue01ConditionList[0])+","+str(blue01ConditionList[1])+","+str(blue01ConditionList[2])
+    if request.GET['lanOccurNumFlg'] == 'true':
+        resultsBlue = get_occur_num_data_blue()
+        print('蓝球出现次数最少前三位：' + str(resultsBlue[0]['num']) + "," + str(resultsBlue[1]['num']) + "," + str(resultsBlue[2]['num']))
+        analysisInfo["LanOccurNumInfo"] = '蓝球出现次数最少前三位：' + str(resultsBlue[0]['num']) + "," + str(resultsBlue[1]['num']) + "," + str(resultsBlue[2]['num'])
+        blue01OccurConditionList=[]
+        for value in resultsBlue:
+            blue01OccurConditionList.append(int(value['num']))
+        # kwargs['blue01__in'] = blue01OccurConditionList[:3]
+
+    kwargs['blue01__in'] = list(set(blue01ConditionList[:3]).union(set(blue01OccurConditionList[:3])))
     #     kwargs['midallssqdata__num__in']= list(set( kwargs['midallssqdata__num__in']))
     # kwargs=getConditionAfterAnalyzeConsectiveNum(kwargs,results)
     # if(kwargs.__len__()==0):
@@ -144,7 +173,7 @@ def getHitTheJackpotNo(request):
     else:
         hitNoList=allresults
     # hitNoList = allresults
-    resultList={"hitNoList":hitNoList,"analysisInfo":analysisInfo}
+    resultList={"hitNoList":hitNoList,"analysisInfo":analysisInfo,"Total":len(allresults)}
     return resultList
 
 if __name__ =='__main__':

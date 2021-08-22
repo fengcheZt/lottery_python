@@ -152,6 +152,27 @@ def get_losing_data_blue(count=-1):
     conn.close()
     return results
 """
+    获得蓝球出现次数数据
+"""
+def get_occur_num_data_blue(count=-1):
+    conn = pymysql.connect(host='localhost', user='root', passwd="123456", db="python",cursorclass=pymysql.cursors.DictCursor)
+    cur = conn.cursor()
+    sql = "SELECT num,amount  FROM blue_occur_num t ORDER BY amount ASC "
+    try:
+       # 执行sql语句
+       cur.execute(sql)
+       results = cur.fetchall()
+       # cur.execute(sql)
+       # 提交到数据库执行
+       # conn.commit()
+    except Exception as e:
+       print(e)
+       # 如果发生错误则回滚
+       conn.rollback()
+    cur.close()
+    conn.close()
+    return results
+"""
     获得dhr数据
 """
 def get_dhr_data():
