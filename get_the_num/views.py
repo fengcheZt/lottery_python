@@ -150,6 +150,8 @@ from get_the_num.main.rotate_matrix.p10_6_5 import get_matrix_10_6_5
 from get_the_num.main.rotate_matrix.p12_6_4 import get_matrix_12_6_4
 from get_the_num.main.rotate_matrix.p13_6_4 import get_matrix_13_6_4
 from get_the_num.main.rotate_matrix.p14_5_4 import get_matrix_14_5_4
+from get_the_num.main.rotate_matrix.p14_6_4 import get_matrix_14_6_4
+from get_the_num.main.rotate_matrix.p15_6_4 import get_matrix_15_6_4
 def selectNumByMatrix(request):
     matrixNum=request.POST['matrixNum']
     selectedRedNum = request.POST.getlist('selectedRedNum')
@@ -161,8 +163,13 @@ def selectNumByMatrix(request):
               'x1264': get_matrix_12_6_4,
               'x1364': get_matrix_13_6_4,
               'x1454': get_matrix_14_5_4,
+              'x1464': get_matrix_14_6_4,
+              'x1564': get_matrix_15_6_4,
               }
-    matrix_list=get_matrix_7_5_5(selectedRedNum,selectedBlueNum)
+    choice = 'matrixNum'  # 获取选择
+    default=''
+    matrix_list=switch.get(choice, default)()  # 执行对应的函数，如果没有就执行默认的函数
+    # matrix_list=get_matrix_7_5_5(selectedRedNum,selectedBlueNum)
     ret = {'status': True, 'data':  matrix_list,'total':len(matrix_list)}
     return HttpResponse(json.dumps(ret), content_type='application/json')
 from django.core import serializers
