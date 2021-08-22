@@ -144,15 +144,23 @@ def rotaryMaritx(request):
 
     return render(request,'rotaryMatrix.html')
 from get_the_num.main.rotate_matrix.p7_5_5 import get_matrix_7_5_5
-from get_the_num.main.rotate_matrix.p10_5_4 import get_matrix_7_5_5
-from get_the_num.main.rotate_matrix.p10_6_5 import get_matrix_7_5_5
+from get_the_num.main.rotate_matrix.p8_5_5 import get_matrix_8_5_5
+from get_the_num.main.rotate_matrix.p9_6_5 import get_matrix_9_6_5
+from get_the_num.main.rotate_matrix.p10_6_5 import get_matrix_10_6_5
+from get_the_num.main.rotate_matrix.p12_6_4 import get_matrix_12_6_4
+from get_the_num.main.rotate_matrix.p13_6_4 import get_matrix_13_6_4
+from get_the_num.main.rotate_matrix.p14_5_4 import get_matrix_14_5_4
 def selectNumByMatrix(request):
     matrixNum=request.POST['matrixNum']
     selectedRedNum = request.POST.getlist('selectedRedNum')
     selectedBlueNum = request.POST.getlist('selectedBlueNum')
     switch = {'x755': get_matrix_7_5_5,  # 注意此处不要加括号
-              'x1054': case2,
-              'x1064': case3,
+              'x855': get_matrix_8_5_5,
+              'x965': get_matrix_9_6_5,
+              'x1065': get_matrix_10_6_5,
+              'x1264': get_matrix_12_6_4,
+              'x1364': get_matrix_13_6_4,
+              'x1454': get_matrix_14_5_4,
               }
     matrix_list=get_matrix_7_5_5(selectedRedNum,selectedBlueNum)
     ret = {'status': True, 'data':  matrix_list,'total':len(matrix_list)}
