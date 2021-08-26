@@ -36,7 +36,7 @@ def insertBlueLosingLotteryData(results):
        conn.rollback()
     cur.close()
     conn.close()
-def updateLosingLottery():
+def updateBlueLosingLottery():
     results = get_blue_ssq_data()
     insertBlueLosingLotteryData(results)
 """
@@ -61,4 +61,4 @@ def get_blue_ssq_data():
     conn.close()
     return results
 if __name__ =='__main__':
-    updateLosingLottery()
+    updateBlueLosingLottery()

@@ -156,19 +156,19 @@ def selectNumByMatrix(request):
     matrixNum=request.POST['matrixNum']
     selectedRedNum = request.POST.getlist('selectedRedNum')
     selectedBlueNum = request.POST.getlist('selectedBlueNum')
-    switch = {'x755': get_matrix_7_5_5,  # 注意此处不要加括号
-              'x855': get_matrix_8_5_5,
-              'x965': get_matrix_9_6_5,
-              'x1065': get_matrix_10_6_5,
-              'x1264': get_matrix_12_6_4,
-              'x1364': get_matrix_13_6_4,
-              'x1454': get_matrix_14_5_4,
-              'x1464': get_matrix_14_6_4,
-              'x1564': get_matrix_15_6_4,
+    switch = {'755': get_matrix_7_5_5,  # 注意此处不要加括号
+              '855': get_matrix_8_5_5,
+              '965': get_matrix_9_6_5,
+              '1065': get_matrix_10_6_5,
+              '1264': get_matrix_12_6_4,
+              '1364': get_matrix_13_6_4,
+              '1454': get_matrix_14_5_4,
+              '1464': get_matrix_14_6_4,
+              '1564': get_matrix_15_6_4,
               }
-    choice = 'matrixNum'  # 获取选择
+    choice = matrixNum  # 获取选择
     default=''
-    matrix_list=switch.get(choice, default)()  # 执行对应的函数，如果没有就执行默认的函数
+    matrix_list=switch.get(choice)(selectedRedNum,selectedBlueNum)  # 执行对应的函数，如果没有就执行默认的函数
     # matrix_list=get_matrix_7_5_5(selectedRedNum,selectedBlueNum)
     ret = {'status': True, 'data':  matrix_list,'total':len(matrix_list)}
     return HttpResponse(json.dumps(ret), content_type='application/json')
@@ -297,4 +297,4 @@ def recordNum(request):
     return HttpResponse(json.dumps(ret),content_type='application/json')
 #每次启动更新最新数据
 from get_the_num.main.updateData import updateData
-# updateData()
+updateData()

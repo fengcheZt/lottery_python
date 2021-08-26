@@ -4,6 +4,7 @@ from get_the_num.main.long_term.inserDHRData import updateDHR
 from get_the_num.main.long_term.insertPairNum import updatePairData
 from get_the_num.main.insertSSQData import updateSSQData
 from get_the_num.main.blue_analyze.updateBlueOccurNum import insertBlueOccurNumData
+from get_the_num.main.blue_analyze.inserBlueLosingLotteryData import updateBlueLosingLottery
 import logging
 def updateData():
     # 更新最新的数据
@@ -18,6 +19,8 @@ def updateData():
     updateThripleData()
     # 更新蓝球出现次数表
     insertBlueOccurNumData()
+    # 更新蓝球遗漏表
+    updateBlueLosingLottery()
 
     logging.critical("update Data done.")
 if __name__ =='__main__':

@@ -91,9 +91,9 @@ def getHitTheJackpotNo(request):
         # 成对号，只取最有可能的号
         results_pair = get_pair_data()
         msg = ''
-        for i in list(results_pair[0]):
-            longargs &= Q(allnum__contains=','+str(i.num)+',')
-            msg = msg + str(i.num) + ','
+        for i in tuple(eval(results_pair[0][0])):
+            longargs &= Q(allnum__contains=','+str(i)+',')
+            msg = msg + str(i) + ','
         analysisInfo["PairInfo"] = '成对号，只取最有可能的号：' + msg[0:len(msg) - 1]
         print('成对号，只取最有可能的号：' + msg[0:len(msg) - 1])
     if request.GET['chengtuanFlg'] == 'true':
@@ -101,9 +101,9 @@ def getHitTheJackpotNo(request):
         # 成团号
         results_thriple = ThripleNum.objects.order_by('-thriple_count')[:6]
         msg = ''
-        for i in list(results_thriple[0]):
-            longargs &= Q(allnum__contains=','+str(i.num)+',')
-            msg = msg + str(i.num) + ','
+        for i in tuple(eval(results_thriple[0][0])):
+            longargs &= Q(allnum__contains=','+str(i)+',')
+            msg = msg + str(i) + ','
         analysisInfo["ThripleInfo"] = '成团号，只取最有可能成团的号：' + msg[0:len(msg) - 1]
         print( '成团号，只取最有可能成团的号：' + msg[0:len(msg) - 1])
     if request.GET['lanFlg'] == 'true':

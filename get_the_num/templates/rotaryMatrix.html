@@ -181,19 +181,30 @@
       </tbody>
 </table>
     <button onclick="selectedDone()">选好了</button>
+    <h3 id="redAmount"></h3>
     <table><tr id="selectedNum"></tr></table>
     <br>
     <br>
-    <h3>旋转矩阵</h3>
+    <h3>旋转矩阵(7-15个红球)</h3>
     <ul class="buttonUl">
         <li><button id="x755" onclick="selectNumByMatrix('755')" style="display: none">7个号码中5保5</button></li>
+        <li><button id="x855" onclick="selectNumByMatrix('855')" style="display: none">8个号码中5保5</button></li>
+        <li><button id="x965" onclick="selectNumByMatrix('965')" style="display: none">9个号码中6保5</button></li>
         <li><button id="x1054" onclick="selectNumByMatrix('1054')" style="display: none">10个号码中5保4</button></li>
         <li><button id="x1065" onclick="selectNumByMatrix('1065')" style="display: none">10个号码中6保5</button></li>
+        <li><button id="x1264" onclick="selectNumByMatrix('1264')" style="display: none">12个号码中6保4</button></li>
+        <li><button id="x1364" onclick="selectNumByMatrix('1364')" style="display: none">13个号码中6保4</button></li>
+        <li><button id="x1454" onclick="selectNumByMatrix('1454')" style="display: none">14个号码中5保4</button></li>
+        <li><button id="x1464" onclick="selectNumByMatrix('1464')" style="display: none">14个号码中6保4</button></li>
+        <li><button id="x1564" onclick="selectNumByMatrix('1564')" style="display: none">15个号码中6保4</button></li>
     </ul>
 <br>
 <table class="table">
     </table>
-
+<div id="actionButton" style="display: none">
+        <button id="recordNum">记录此组号码</button>
+        <button id="copyNum">复制此组号码</button>
+    </div>
 </body>
 <script>
     var selectedNumStr=''
@@ -201,9 +212,16 @@
     var arrayObjBlue = new Array();
     function selectedDone() {
         var redAmount=$("input[name='number']:checked").length
+        var blueAmount=$("input[name='blue_number']:checked").length
+        $("#redAmount").text(redAmount)
+
         if( redAmount<6){
             alert("请选择最少七个红球")
         }else{
+            if( blueAmount<1){
+                alert("请选择最少1个蓝球")
+                return
+            }
             var dataHtml=""
             $("input[name='number']:checked").each(function(){
              dataHtml=dataHtml+"<span style='color:red;font-size:20px'>"+$(this).val()+"&nbsp;</span>"
@@ -216,16 +234,40 @@
             });
             $("#selectedNum").html(dataHtml)
 
+            $("#x755").css('display','none')
+            $("#x855").css('display','none')
+            $("#x965").css('display','none')
+            $("#x1054").css('display','none')
+            $("#x1065").css('display','none')
+            $("#x1264").css('display','none')
+            $("#x1364").css('display','none')
+            $("#x1454").css('display','none')
+            $("#x1464").css('display','none')
+            $("#x1564").css('display','none')
+
             if(redAmount == 7){
                 $("#x755").css('display','block')
+            }else if(redAmount == 8){
+                $("#x855").css('display','block')
+            }else if(redAmount == 9){
+                $("#x965").css('display','block')
             }else if (redAmount == 10) {
                 $("#x1054").css('display','block')
                 $("#x1065").css('display','block')
-
+            }else if(redAmount == 12){
+                $("#x1264").css('display','block')
+            }else if(redAmount == 13){
+                $("#x1364").css('display','block')
+            }else if(redAmount == 14){
+                $("#x1454").css('display','block')
+                $("#x1464").css('display','block')
+            }else if(redAmount == 15){
+                $("#x1564").css('display','block')
             }
         }
 
     }
+    var arrayObj = new Array()
     function selectNumByMatrix(matrixNum){
         $.ajax({
                 url :"{% url 'get_the_num:selectNumByMatrix' %}",
@@ -249,9 +291,24 @@
                     classStr_blue="class='op_caipiao_ball'><span class='c-icon c-icon-ball-blue op_caipiao_ball_blue c-gap-right-small'>"
                     for(var i=0;i<arg.length;i++){
                         dataHtml=dataHtml+"<tr><td "+classStr+arg[i][0]+"</span></td><td "+classStr+arg[i][1]+"</td><td "+classStr+arg[i][2]+"</td><td "+classStr+arg[i][3]+"</td><td "+classStr+arg[i][4]+"</td><td "+classStr+arg[i][5]+"</td><td "+classStr_blue+arg[i][6]+"</tr>"
-
+                        copyNumText=copyNumText+arg[i][0]+","+arg[i][1]+","+arg[i][2]+","+arg[i][3]+","+arg[i][4]+","+arg[i][5]+"+"+arg[i][6]+"\r\n"
+                        var recordNumJson={
+                            red01:arg[i][0],
+                            red02:arg[i][1],
+                            red03:arg[i][2],
+                            red04:arg[i][3],
+                            red05:arg[i][4],
+                            red06:arg[i][5],
+                            blue01:arg[i][6]
+                        }
+                        arrayObj[i]=JSON.stringify(recordNumJson)
                     }
                     $(".table").html(dataHtmlTH+dataHtml)
+                    if(dataHtml !=""){
+                        $("#actionButton").css('display',"block")
+                    }else{
+                        $("#actionButton").css('display',"none")
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert('选号失败')
@@ -259,5 +316,30 @@
 
             })
     }
+    $("#recordNum").click(function(){
+           $.ajax({
+                url :"{% url 'get_the_num:recordNum' %}",
+                type:'POST',
+                traditional:true,
+                data:{
+                    willBuyNumList:arrayObj,
+                },
+                dataType:'JSON',
+                success:function (responseJson) {
+                    $("#recordNum").attr("disabled",true)
+                    alert('记录成功')
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('记录失败')
+                }
+
+            })
+           });
+    var clipboard = new ClipboardJS('#copyNum', {
+        text: function() {
+            alert("复制成功")
+            return copyNumText;
+        }
+    });
 </script>
 </html>

@@ -46,7 +46,7 @@ def get_matrix_14_5_4(selected_num_list=[],selected_blue_num_list=[]):
 
         matrix_list=[tupple01,tupple02,tupple03,tupple04,tupple05,tupple06,tupple07,tupple08,tupple09,tupple10,tupple11,tupple12,tupple13,tupple14,tupple15,tupple16,tupple17,tupple18,tupple19,tupple20,tupple21,tupple22,tupple23,tupple24,tupple25,tupple26,tupple27,tupple28,tupple29,tupple30,tupple31]
     else:
-        print("备选号码必须为13个数")
+        print("备选号码必须为14个数")
     return matrix_list
 if __name__ =='__main__':
     last_one=get_last_one_data()
