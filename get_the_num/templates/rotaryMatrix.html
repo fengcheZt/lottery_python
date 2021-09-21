@@ -187,16 +187,16 @@
     <br>
     <h3>旋转矩阵(7-15个红球)</h3>
     <ul class="buttonUl">
-        <li><button id="x755" onclick="selectNumByMatrix('755')" style="display: none">7个号码中5保5</button></li>
-        <li><button id="x855" onclick="selectNumByMatrix('855')" style="display: none">8个号码中5保5</button></li>
-        <li><button id="x965" onclick="selectNumByMatrix('965')" style="display: none">9个号码中6保5</button></li>
-        <li><button id="x1054" onclick="selectNumByMatrix('1054')" style="display: none">10个号码中5保4</button></li>
-        <li><button id="x1065" onclick="selectNumByMatrix('1065')" style="display: none">10个号码中6保5</button></li>
-        <li><button id="x1264" onclick="selectNumByMatrix('1264')" style="display: none">12个号码中6保4</button></li>
-        <li><button id="x1364" onclick="selectNumByMatrix('1364')" style="display: none">13个号码中6保4</button></li>
-        <li><button id="x1454" onclick="selectNumByMatrix('1454')" style="display: none">14个号码中5保4</button></li>
-        <li><button id="x1464" onclick="selectNumByMatrix('1464')" style="display: none">14个号码中6保4</button></li>
-        <li><button id="x1564" onclick="selectNumByMatrix('1564')" style="display: none">15个号码中6保4</button></li>
+        <li><button id="x755" onclick="selectNumByMatrix('755')" style="display: none">7个号码中5保5（6注）</button></li>
+        <li><button id="x855" onclick="selectNumByMatrix('855')" style="display: none">8个号码中5保5（12注）</button></li>
+        <li><button id="x965" onclick="selectNumByMatrix('965')" style="display: none">9个号码中6保5（7注）</button></li>
+        <li><button id="x1054" onclick="selectNumByMatrix('1054')" style="display: none">10个号码中5保4（7注）</button></li>
+        <li><button id="x1065" onclick="selectNumByMatrix('1065')" style="display: none">10个号码中6保5（14注）</button></li>
+        <li><button id="x1264" onclick="selectNumByMatrix('1264')" style="display: none">12个号码中6保4（6注）</button></li>
+        <li><button id="x1364" onclick="selectNumByMatrix('1364')" style="display: none">13个号码中6保4（10注）</button></li>
+        <li><button id="x1454" onclick="selectNumByMatrix('1454')" style="display: none">14个号码中5保4（31注）</button></li>
+        <li><button id="x1464" onclick="selectNumByMatrix('1464')" style="display: none">14个号码中6保4（14注）</button></li>
+        <li><button id="x1564" onclick="selectNumByMatrix('1564')" style="display: none">15个号码中6保4（19注）</button></li>
     </ul>
 <br>
 <table class="table">
@@ -211,6 +211,8 @@
     var arrayObjRed = new Array();
     var arrayObjBlue = new Array();
     function selectedDone() {
+        arrayObjRed=[]
+        arrayObjBlue=[]
         var redAmount=$("input[name='number']:checked").length
         var blueAmount=$("input[name='blue_number']:checked").length
         $("#redAmount").text(redAmount)

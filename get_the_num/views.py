@@ -146,6 +146,7 @@ def rotaryMaritx(request):
 from get_the_num.main.rotate_matrix.p7_5_5 import get_matrix_7_5_5
 from get_the_num.main.rotate_matrix.p8_5_5 import get_matrix_8_5_5
 from get_the_num.main.rotate_matrix.p9_6_5 import get_matrix_9_6_5
+from get_the_num.main.rotate_matrix.p10_5_4 import get_matrix_10_5_4
 from get_the_num.main.rotate_matrix.p10_6_5 import get_matrix_10_6_5
 from get_the_num.main.rotate_matrix.p12_6_4 import get_matrix_12_6_4
 from get_the_num.main.rotate_matrix.p13_6_4 import get_matrix_13_6_4
@@ -159,6 +160,7 @@ def selectNumByMatrix(request):
     switch = {'755': get_matrix_7_5_5,  # 注意此处不要加括号
               '855': get_matrix_8_5_5,
               '965': get_matrix_9_6_5,
+              '1054': get_matrix_10_5_4,
               '1065': get_matrix_10_6_5,
               '1264': get_matrix_12_6_4,
               '1364': get_matrix_13_6_4,
