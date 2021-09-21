@@ -42,7 +42,103 @@
     </style>
 </head>
 <body>
-<h3 style="color: red">红球</h3>
+<h3 style="color: red">红球胆码区</h3>
+<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#E1E1E1">
+      <tbody><tr>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="01">
+          01</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="02">
+          02</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="03">
+          03</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="04">
+          04</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="05">
+          05</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="06">
+          06</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="07">
+          07</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="08">
+          08</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="09">
+          09</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="10">
+          10</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="11">
+          11</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="12">
+          12</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="13">
+          13</td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="14">
+          14</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="15">
+          15</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="16">
+          16</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="17">
+          17</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="18">
+          18</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="19">
+          19</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="20">
+          20</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="21">
+21</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="22">
+          22</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="23">
+          23</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="24">
+          24</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="25">
+          25</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="26">
+          26</td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="27">
+          27</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="28">
+          28</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="29">
+          29</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="30">
+          30</td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="31">
+31 </td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="32">
+32 </td>
+        <td bgcolor="#FFFFFF"><input type="checkbox" name="danNumber" value="33">
+33 </td>
+        <td colspan="2" bgcolor="#FFFFFF">          机选
+          <select name="machine" id="machine" onchange="SetCheck(RndChkNums(this.value))">
+		  <option value="0"></option>
+		  <option value="7">7</option>
+		  <option value="8">8</option>
+		  <option value="9">9</option>
+		  <option value="10">10</option>
+		  <option value="11">11</option>
+		  <option value="12">12</option>
+		  <option value="13">13</option>
+		  <option value="14">14</option>
+		  <option value="15">15</option>
+		  <option value="16">16</option>
+		  <option value="17">17</option>
+		  <option value="18">18</option>
+		  <option value="19">19</option>
+		  <option value="20">20</option>
+          </select></td>
+        <td colspan="4" bgcolor="#FFFFFF">请输入生成注数，不能超过2000：
+          <input size="5" name="NoteFew" value="500">
+          &nbsp;注</td>
+        </tr>
+    </tbody></table>
+<h3 style="color: red">红球拖码区</h3>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#E1E1E1">
       <tbody><tr>
         <td bgcolor="#FFFFFF"><input type="checkbox" name="number" value="01">
@@ -180,23 +276,23 @@
       </tr>
       </tbody>
 </table>
-    <button onclick="selectedDone()">选好了</button>
-    <h3 id="redAmount"></h3>
+    <button onclick="selectedDone()">选好了</button><br>
+    胆码：<span id="redDanAmount"></span>&nbsp;拖码：<span id="redAmount"></span>
     <table><tr id="selectedNum"></tr></table>
     <br>
     <br>
     <h3>旋转矩阵(7-15个红球)</h3>
     <ul class="buttonUl">
-        <li><button id="x755" onclick="selectNumByMatrix('755')" style="display: none">7个号码中5保5（6注）</button></li>
-        <li><button id="x855" onclick="selectNumByMatrix('855')" style="display: none">8个号码中5保5（12注）</button></li>
-        <li><button id="x965" onclick="selectNumByMatrix('965')" style="display: none">9个号码中6保5（7注）</button></li>
-        <li><button id="x1054" onclick="selectNumByMatrix('1054')" style="display: none">10个号码中5保4（7注）</button></li>
-        <li><button id="x1065" onclick="selectNumByMatrix('1065')" style="display: none">10个号码中6保5（14注）</button></li>
-        <li><button id="x1264" onclick="selectNumByMatrix('1264')" style="display: none">12个号码中6保4（6注）</button></li>
-        <li><button id="x1364" onclick="selectNumByMatrix('1364')" style="display: none">13个号码中6保4（10注）</button></li>
-        <li><button id="x1454" onclick="selectNumByMatrix('1454')" style="display: none">14个号码中5保4（31注）</button></li>
-        <li><button id="x1464" onclick="selectNumByMatrix('1464')" style="display: none">14个号码中6保4（14注）</button></li>
-        <li><button id="x1564" onclick="selectNumByMatrix('1564')" style="display: none">15个号码中6保4（19注）</button></li>
+        <li><button id="x755" onclick="selectNumByMatrix('755')" style="display: none;width: 190px;">7个号码中5保5（6注）</button></li>
+        <li><button id="x855" onclick="selectNumByMatrix('855')" style="display: none;width: 190px;">8个号码中5保5（12注）</button></li>
+        <li><button id="x965" onclick="selectNumByMatrix('965')" style="display: none;width: 190px;">9个号码中6保5（7注）</button></li>
+        <li><button id="x1054" onclick="selectNumByMatrix('1054')" style="display: none;width: 190px;">10个号码中5保4（7注）</button></li>
+        <li><button id="x1065" onclick="selectNumByMatrix('1065')" style="display: none;width: 190px;">10个号码中6保5（14注）</button></li>
+        <li><button id="x1264" onclick="selectNumByMatrix('1264')" style="display: none;width: 190px;">12个号码中6保4（6注）</button></li>
+        <li><button id="x1364" onclick="selectNumByMatrix('1364')" style="display: none;width: 190px;">13个号码中6保4（10注）</button></li>
+        <li><button id="x1454" onclick="selectNumByMatrix('1454')" style="display: none;width: 190px;">14个号码中5保4（31注）</button></li>
+        <li><button id="x1464" onclick="selectNumByMatrix('1464')" style="display: none;width: 190px;">14个号码中6保4（14注）</button></li>
+        <li><button id="x1564" onclick="selectNumByMatrix('1564')" style="display: none;width: 190px;">15个号码中6保4（19注）</button></li>
     </ul>
 <br>
 <table class="table">
@@ -213,10 +309,12 @@
     function selectedDone() {
         arrayObjRed=[]
         arrayObjBlue=[]
+        var redDanAmount=$("input[name='danNumber']:checked").length
         var redAmount=$("input[name='number']:checked").length
         var blueAmount=$("input[name='blue_number']:checked").length
+        $("#redDanAmount").text(redDanAmount)
         $("#redAmount").text(redAmount)
-
+        redAmount=redDanAmount+redAmount
         if( redAmount<6){
             alert("请选择最少七个红球")
         }else{
@@ -225,13 +323,17 @@
                 return
             }
             var dataHtml=""
+            $("input[name='danNumber']:checked").each(function(){
+                dataHtml=dataHtml+"<span style='color:red;font-size:30px'>"+$(this).val()+"&nbsp;</span>"
+                arrayObjRed.push($(this).val())
+            });
             $("input[name='number']:checked").each(function(){
-             dataHtml=dataHtml+"<span style='color:red;font-size:20px'>"+$(this).val()+"&nbsp;</span>"
+                dataHtml=dataHtml+"<span style='color:red;font-size:20px'>"+$(this).val()+"&nbsp;</span>"
                 arrayObjRed.push($(this).val())
             });
             dataHtml=dataHtml+"&nbsp;&nbsp;&nbsp;"
             $("input[name='blue_number']:checked").each(function(){
-             dataHtml=dataHtml+"<span style='color:blue;font-size:20px'>"+$(this).val()+"&nbsp;</span>"
+                dataHtml=dataHtml+"<span style='color:blue;font-size:20px'>"+$(this).val()+"&nbsp;</span>"
                 arrayObjBlue.push($(this).val())
             });
             $("#selectedNum").html(dataHtml)
@@ -342,6 +444,18 @@
             alert("复制成功")
             return copyNumText;
         }
+    });
+    $("input[name='number']").change(function(){
+       if($(this).is(':checked')){
+           val=$(this).val();
+           $("input[name='danNumber'][value="+val+"]").attr("checked",false)
+       }
+    });
+    $("input[name='danNumber']").change(function(){
+       if($(this).is(':checked')){
+           val=$(this).val();
+           $("input[name='number'][value="+val+"]").attr("checked",false)
+       }
     });
 </script>
 </html>
